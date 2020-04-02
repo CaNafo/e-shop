@@ -952,7 +952,7 @@ Shadow=0
 <c:Symbols>
 <o:RelationshipSymbol Id="o5">
 <a:ModificationDate>1585788249</a:ModificationDate>
-<a:Rect>((-9074,1725), (1898,7645))</a:Rect>
+<a:Rect>((-9074,1725), (1898,7719))</a:Rect>
 <a:ListOfPoints>((-9074,6675),(-502,6675),(-502,1725))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4631</a:ArrowStyle>
@@ -1036,7 +1036,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:RelationshipSymbol>
 <o:RelationshipSymbol Id="o18">
-<a:Rect>((15829,11302), (33941,20339))</a:Rect>
+<a:Rect>((15829,11302), (33941,20435))</a:Rect>
 <a:ListOfPoints>((31129,11302),(31129,19950),(15829,19950))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>5137</a:ArrowStyle>
@@ -1076,7 +1076,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:RelationshipSymbol>
 <o:RelationshipSymbol Id="o25">
-<a:Rect>((-12787,18850), (3413,20317))</a:Rect>
+<a:Rect>((-12787,18850), (3413,20394))</a:Rect>
 <a:ListOfPoints>((-12787,19350),(3413,19350))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4631</a:ArrowStyle>
@@ -1116,7 +1116,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </c:Object>
 </o:RelationshipSymbol>
 <o:RelationshipSymbol Id="o30">
-<a:Rect>((-49117,7599), (-27742,9052))</a:Rect>
+<a:Rect>((-49117,7599), (-27742,9143))</a:Rect>
 <a:ListOfPoints>((-27742,8099),(-49117,8099))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4631</a:ArrowStyle>
@@ -1146,6 +1146,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -1166,6 +1167,7 @@ LABL 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -1186,6 +1188,7 @@ LABL 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -1206,6 +1209,7 @@ LABL 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -1226,6 +1230,7 @@ LABL 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -1246,6 +1251,7 @@ LABL 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -1266,6 +1272,7 @@ LABL 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -1286,6 +1293,7 @@ LABL 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -1306,6 +1314,7 @@ LABL 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -1326,6 +1335,7 @@ LABL 0 Arial,8,N</a:FontList>
 DISPNAME 0 Arial,8,N
 Attributes 0 Arial,8,N
 EntityPrimaryAttribute 0 Arial,8,U
+EntityForeignAttribute 0 Arial,8,N
 Identifiers 0 Arial,8,N
 LABL 0 Arial,8,N</a:FontList>
 <a:BrushStyle>6</a:BrushStyle>
@@ -2643,12 +2653,12 @@ DAT 1585788210</a:History>
 <a:Code>Conceptual Database Model</a:Code>
 <a:CreationDate>1585788210</a:CreationDate>
 <a:Creator>Ca</a:Creator>
-<a:ModificationDate>1585788210</a:ModificationDate>
+<a:ModificationDate>1585788120</a:ModificationDate>
 <a:Modifier>Ca</a:Modifier>
 <a:TargetModelURL>file:///%[PRJ_ROOT_DIR]%/Conceptual Database Model.cdm</a:TargetModelURL>
 <a:TargetModelID>645C9F9D-9800-4813-B47D-1FB2D8D5AB4D</a:TargetModelID>
 <a:TargetModelClassID>1E597170-9350-11D1-AB3C-0020AF71E433</a:TargetModelClassID>
-<a:TargetModelLastModificationDate>1585788210</a:TargetModelLastModificationDate>
+<a:TargetModelLastModificationDate>1585788120</a:TargetModelLastModificationDate>
 <c:SessionShortcuts>
 <o:Shortcut Ref="o3"/>
 </c:SessionShortcuts>
