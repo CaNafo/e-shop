@@ -515,6 +515,7 @@ Shadow=0</a:DisplayPreferences>
 <o:ModelDocumentSymbol Id="o5">
 <a:ModificationDate>1585789167</a:ModificationDate>
 <a:IconMode>2</a:IconMode>
+<a:EmptyAreaSize>(1200, 1200)</a:EmptyAreaSize>
 <a:Rect>((-1201,-148), (1198,2251))</a:Rect>
 <a:LineColor>12034707</a:LineColor>
 <a:FillColor>16437422</a:FillColor>
@@ -526,7 +527,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:GradientFillMode>65</a:GradientFillMode>
 <a:CustomPictureType>4</a:CustomPictureType>
 <a:CustomTextMode>1</a:CustomTextMode>
-<a:CustomPictureID>28708EF0-F2F0-4112-A6B0-5D9C5E633401</a:CustomPictureID>
+<a:CustomPictureID>BBB7C737-7C3E-48D0-9450-A5F6CB1A579C</a:CustomPictureID>
 <a:GradientEndColor>16777215</a:GradientEndColor>
 <a:KeepAspect>1</a:KeepAspect>
 <c:Object>
@@ -536,6 +537,7 @@ LABL 0 Arial,8,N</a:FontList>
 <o:ModelDocumentSymbol Id="o6">
 <a:ModificationDate>1585789169</a:ModificationDate>
 <a:IconMode>2</a:IconMode>
+<a:EmptyAreaSize>(1200, 1200)</a:EmptyAreaSize>
 <a:Rect>((-1201,-9647), (1198,-7248))</a:Rect>
 <a:LineColor>12034707</a:LineColor>
 <a:FillColor>16437422</a:FillColor>
@@ -547,7 +549,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:GradientFillMode>65</a:GradientFillMode>
 <a:CustomPictureType>4</a:CustomPictureType>
 <a:CustomTextMode>1</a:CustomTextMode>
-<a:CustomPictureID>FB9AA0D7-C1FB-4F79-88B9-15F23DBCF22F</a:CustomPictureID>
+<a:CustomPictureID>CFF57C53-89E8-42E5-BDE5-FB5F23E58D78</a:CustomPictureID>
 <a:GradientEndColor>16777215</a:GradientEndColor>
 <a:KeepAspect>1</a:KeepAspect>
 <c:Object>
@@ -596,7 +598,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:Code>Logical Database Model</a:Code>
 <a:CreationDate>1585789169</a:CreationDate>
 <a:Creator>Ca</a:Creator>
-<a:ModificationDate>1585789169</a:ModificationDate>
+<a:ModificationDate>1585788211</a:ModificationDate>
 <a:Modifier>Ca</a:Modifier>
 <a:Location>file:///%[PRJ_ROOT_DIR]%/Logical Database Model.ldm</a:Location>
 <a:Extension>ldm</a:Extension>
