@@ -1,0 +1,1 @@
+Server= (LocalDb)\MSSQLLocalDB; Database = eshop; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.sqlserver -OutputDir Models
