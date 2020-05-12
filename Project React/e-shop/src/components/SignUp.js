@@ -1,8 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../App.css';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 function SignUp() {
+
+    let history = useHistory();
+
+    useEffect(() => {
+        checkSession();
+    }, [])
+
+    function checkSession() {
+        if (sessionStorage.getItem('name') != null) {
+            history.push('/IndexApp');
+        } else{
+            history.push('/');
+        }
+    }
+
     return (
         <div className='App'>
             <form>

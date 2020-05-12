@@ -17,7 +17,31 @@ namespace e_shop.Controllers
         {
             using (var context = new eshopContext())
             {
-                return context.Users.Where(user => user.EMail.Equals(content.eMail) && user.Password.Equals(content.password)).ToList();
+                var result = from user in context.Users
+                             where (user.EMail.Equals(content.eMail) && user.Password.Equals(content.password))
+                             select new
+                             {
+                                 id = user.UserId,
+                                 eMail = user.EMail,
+                                 firstname = user.FirstName,
+                                 lastname = user.LastName,
+                                 roles = context.Roles.Select(role => new {
+                                                                             role.RoleId, 
+                                                                             role.RoleName,
+                                                                             permisions = context.Permissions.Select(perm => new
+                                                                             {
+                                                                                 perm.PermissionId,
+                                                                                 perm.PermissionName
+                                                                             }).Where(
+                                                                                    p => role.PermissionList.Select(pl => pl.PermissionId).Contains(p.PermissionId)
+                                                                                 ).ToList()
+                                                                         }
+                                                             ).Where(
+                                                                     r => user.RoleList.Select(d => d.RoleId).Contains(r.RoleId)
+                                                                    ).ToList()
+                             };
+                return Ok(result.ToList());
+
             }
         }
     }

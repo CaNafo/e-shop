@@ -7,8 +7,20 @@ import LoginServices from '../services/LoginService'
 function Login() {
     const [eMail, setEmail] = useState('');
     const [pass, setPass] = useState('');
-    let history = useHistory();    
+    let history = useHistory();
 
+    useEffect(() => {
+        checkSession();
+    }, [])
+
+    function checkSession() {
+        if (sessionStorage.getItem('name') != null) {
+            history.push('/IndexApp');
+        } else{
+            history.push('/');
+        }
+    }
+    
     return (
         <div className='App'>
             <form>
@@ -49,7 +61,7 @@ function Login() {
                 </p>
             </form>
         </div>
-    );
+    );            
 }
 
 export default Login;

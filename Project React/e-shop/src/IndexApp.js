@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
-
+import './style/IndexApp.css'
+import Nav from './components/Nav'
 function App() {
-  const [name,setName] = useState('');
+  const [name, setName] = useState('');
   let history = useHistory();
 
   useEffect(() => {
@@ -18,10 +19,13 @@ function App() {
 
   return (
     <div>
-      <h1>Welcome {name}</h1>
-      <Router>
+      <Nav />
+      <div className='indexContainer'>
+        <h1>Welcome {name}</h1>
+        <Router>
 
-      </Router>
+        </Router>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,8 @@ const LoginServices = {
         }
         else {
             history.push('../IndexApp');
-            sessionStorage.setItem('name', response[0].firstName);
+            sessionStorage.setItem('name', response[0].firstname);
+            console.log(response);
         }
     },
 
