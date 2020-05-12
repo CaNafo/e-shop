@@ -5,8 +5,8 @@ import NavServices from '../services/NavService'
 import { Link, useHistory } from 'react-router-dom';
 
 function Navigation() {
-  
-  let history = useHistory();    
+
+  let history = useHistory();
 
   return (
     <>
@@ -18,7 +18,9 @@ function Navigation() {
           <Nav.Link href="#pricing">Pricing</Nav.Link>
         </Nav>
         <Form inline>
-          <Button variant="outline-info" onClick={event => NavServices.logout(history)}>Log out</Button>
+          <Navbar.Text className='mr-sm-1'>Logged in as</Navbar.Text>
+          <Link to="/components/profile"><Button variant='outline-light' className='mr-sm-2 btn-sm'>Marko</Button></Link>
+          <Button variant="outline-info btn-sm" onClick={event => NavServices.logout(history)}>Log out</Button>
         </Form>
       </Navbar>
     </>

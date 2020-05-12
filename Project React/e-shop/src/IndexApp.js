@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
 import './style/IndexApp.css'
 import Nav from './components/Nav'
+import Profile from './components/Profile'
+
 function App() {
-  const [name, setName] = useState('');
   let history = useHistory();
 
   useEffect(() => {
@@ -11,22 +12,20 @@ function App() {
   }, [])
 
   function checkSession() {
-    if (sessionStorage.getItem('name') != null) {
-      setName(sessionStorage.getItem('name'));
-    } else
+    if (sessionStorage.getItem('name') == null)
       history.push('/');
   }
 
   return (
-    <div>
-      <Nav />
-      <div className='indexContainer'>
-        <h1>Welcome {name}</h1>
-        <Router>
-
-        </Router>
+    <Router>
+      <div>
+        <div className='indexContainer'>
+          <Nav />
+          <Route path='/components/Profile' exact component={Profile} />
+        </div>
       </div>
-    </div>
+
+    </Router>
   );
 }
 
