@@ -1,0 +1,15 @@
+.App {
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 2%;
+}
+
+.AppContainer{
+  background-color: gainsboro;
+}
+
+.test{
+  position: absolute;
+  float: left;
+  color: aliceblue;
+}

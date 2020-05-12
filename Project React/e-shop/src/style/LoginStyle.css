@@ -1,0 +1,19 @@
+.Container{
+    text-align: center;
+    display: inline-block;
+}
+.ContainerElementMargin{
+    margin-left: 10px;
+}
+.loginSignUpLink{
+    color: white;
+}
+.LoginNav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .LoginNavItems{
+    width: 200px;
+    margin: 1px;
+  }
