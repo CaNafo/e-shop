@@ -1,8 +1,8 @@
 
 const NavServices = {
         logout : function(history){
-            sessionStorage.clear();
             history.push('../');
+            sessionStorage.clear();
             window.location.reload();
         }
     }

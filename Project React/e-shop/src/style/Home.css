@@ -1,0 +1,41 @@
+#ProductContainer{
+    margin-top: 15px;
+    float: left;
+}
+body{
+    background-color: gainsboro !important;
+}
+input[type=text] {
+    margin: 10px;
+    width: 55%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url("../icons/search.png");
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  input[type=text]:focus {
+    width: 100%;
+  }
+
+  .columnStyle{
+      margin-top: -1px;
+      border-right: solid 1px rgb(109, 101, 101);
+      background-color: #2196f3      ;
+      height: 100vh !important;
+  }
+  .containerStyle{
+      width: 100%;
+      float: left;
+      min-height: 100%;
+  }
+  .filtersStyle{
+      margin-top: 45%;
+  }

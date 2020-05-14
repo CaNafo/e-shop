@@ -7,9 +7,8 @@ const LoginServices = {
             history.push('./components/Login');
         }
         else {
-            history.push('../IndexApp');
             sessionStorage.setItem('name', response[0].firstname);
-            console.log(response);
+            history.push('../IndexApp');
         }
     },
 

@@ -11,3 +11,8 @@
 .test{
   color: aliceblue;
 }
+
+.navBackground{
+  background-color: #2196f3;
+  border-bottom: solid 1px  rgb(109, 101, 101);
+}

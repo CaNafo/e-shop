@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     4.5.2020. 22.50.54                           */
+/* Created on:     14.5.2020. 00.52.05                          */
 /*==============================================================*/
 
 
@@ -44,6 +44,13 @@ if exists (select 1
    where r.fkeyid = object_id('PRODUCTS') and o.name = 'FK_PRODUCTS_BELONGS_T_CATEGORY')
 alter table PRODUCTS
    drop constraint FK_PRODUCTS_BELONGS_T_CATEGORY
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('PRODUCT_PHOTO') and o.name = 'FK_PRODUCT__HAS_PHOTO_PRODUCTS')
+alter table PRODUCT_PHOTO
+   drop constraint FK_PRODUCT__HAS_PHOTO_PRODUCTS
 go
 
 if exists (select 1
@@ -182,6 +189,22 @@ if exists (select 1
            where  id = object_id('PRODUCTS')
             and   type = 'U')
    drop table PRODUCTS
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('PRODUCT_PHOTO')
+            and   name  = 'HAS_PHOTO_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index PRODUCT_PHOTO.HAS_PHOTO_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('PRODUCT_PHOTO')
+            and   type = 'U')
+   drop table PRODUCT_PHOTO
 go
 
 if exists (select 1
@@ -408,6 +431,29 @@ create nonclustered index BELONGS_TO_CATEGORY_FK on PRODUCTS (CATEGORY_ID ASC)
 go
 
 /*==============================================================*/
+/* Table: PRODUCT_PHOTO                                         */
+/*==============================================================*/
+create table PRODUCT_PHOTO (
+   PHOTO_ID             int                  identity,
+   CATEGORY_ID          int                  null,
+   PRODUCT_ID           int                  null,
+   PHOTO                varchar(2147483647)  null,
+   constraint PK_PRODUCT_PHOTO primary key (PHOTO_ID)
+)
+go
+
+/*==============================================================*/
+/* Index: HAS_PHOTO_FK                                          */
+/*==============================================================*/
+
+
+
+
+create nonclustered index HAS_PHOTO_FK on PRODUCT_PHOTO (CATEGORY_ID ASC,
+  PRODUCT_ID ASC)
+go
+
+/*==============================================================*/
 /* Table: RESERVED                                              */
 /*==============================================================*/
 create table RESERVED (
@@ -526,6 +572,11 @@ go
 alter table PRODUCTS
    add constraint FK_PRODUCTS_BELONGS_T_CATEGORY foreign key (CATEGORY_ID)
       references CATEGORY (CATEGORY_ID)
+go
+
+alter table PRODUCT_PHOTO
+   add constraint FK_PRODUCT__HAS_PHOTO_PRODUCTS foreign key (CATEGORY_ID, PRODUCT_ID)
+      references PRODUCTS (CATEGORY_ID, PRODUCT_ID)
 go
 
 alter table RESERVED

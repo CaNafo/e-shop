@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace e_shop.Models
+namespace e_shop.Models.DatabaseModels
 {
     public partial class Products
     {
         public Products()
         {
+            ProductPhoto = new HashSet<ProductPhoto>();
             Reserved = new HashSet<Reserved>();
         }
 
@@ -18,6 +19,7 @@ namespace e_shop.Models
         public int ProductAmount { get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual ICollection<ProductPhoto> ProductPhoto { get; set; }
         public virtual ICollection<Reserved> Reserved { get; set; }
     }
 }

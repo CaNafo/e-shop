@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace e_shop.Models
+namespace e_shop.Models.DatabaseModels
 {
     public partial class eshopContext : DbContext
     {
@@ -22,6 +22,7 @@ namespace e_shop.Models
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<PermissionList> PermissionList { get; set; }
         public virtual DbSet<Permissions> Permissions { get; set; }
+        public virtual DbSet<ProductPhoto> ProductPhoto { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Reserved> Reserved { get; set; }
         public virtual DbSet<RoleList> RoleList { get; set; }
@@ -32,8 +33,8 @@ namespace e_shop.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=WINDOWS-GIQE8BS\SQLEXPRESS; Database=eshop; Trusted_Connection=True;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server= (LocalDb)\\MSSQLLocalDB; Database = eshop; Trusted_Connection=True;");
             }
         }
 
@@ -215,6 +216,32 @@ namespace e_shop.Models
                     .HasColumnName("PERMISSION_NAME")
                     .HasMaxLength(128)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ProductPhoto>(entity =>
+            {
+                entity.HasKey(e => e.PhotoId);
+
+                entity.ToTable("PRODUCT_PHOTO");
+
+                entity.HasIndex(e => new { e.CategoryId, e.ProductId })
+                    .HasName("HAS_PHOTO_FK");
+
+                entity.Property(e => e.PhotoId).HasColumnName("PHOTO_ID");
+
+                entity.Property(e => e.CategoryId).HasColumnName("CATEGORY_ID");
+
+                entity.Property(e => e.Photo)
+                    .HasColumnName("PHOTO")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ProductId).HasColumnName("PRODUCT_ID");
+
+                entity.HasOne(d => d.Products)
+                    .WithMany(p => p.ProductPhoto)
+                    .HasForeignKey(d => new { d.CategoryId, d.ProductId })
+                    .HasConstraintName("FK_PRODUCT__HAS_PHOTO_PRODUCTS");
             });
 
             modelBuilder.Entity<Products>(entity =>

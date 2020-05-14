@@ -13,8 +13,6 @@ function SignUp() {
     function checkSession() {
         if (sessionStorage.getItem('name') != null) {
             history.push('/IndexApp');
-        } else{
-            history.push('/');
         }
     }
 
