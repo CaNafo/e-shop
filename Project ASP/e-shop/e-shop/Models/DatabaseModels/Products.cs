@@ -7,7 +7,6 @@ namespace e_shop.Models.DatabaseModels
     {
         public Products()
         {
-            ProductPhoto = new HashSet<ProductPhoto>();
             Reserved = new HashSet<Reserved>();
         }
 
@@ -16,10 +15,10 @@ namespace e_shop.Models.DatabaseModels
         public string ProductName { get; set; }
         public decimal ProductPrice { get; set; }
         public DateTime? ProductExpireDate { get; set; }
-        public int ProductAmount { get; set; }
+        public string ProductDescription { get; set; }
+        public string ProductPhoto { get; set; }
 
         public virtual Category Category { get; set; }
-        public virtual ICollection<ProductPhoto> ProductPhoto { get; set; }
         public virtual ICollection<Reserved> Reserved { get; set; }
     }
 }

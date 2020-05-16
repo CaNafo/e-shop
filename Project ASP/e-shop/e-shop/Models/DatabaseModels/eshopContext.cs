@@ -22,7 +22,6 @@ namespace e_shop.Models.DatabaseModels
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<PermissionList> PermissionList { get; set; }
         public virtual DbSet<Permissions> Permissions { get; set; }
-        public virtual DbSet<ProductPhoto> ProductPhoto { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Reserved> Reserved { get; set; }
         public virtual DbSet<RoleList> RoleList { get; set; }
@@ -124,7 +123,6 @@ namespace e_shop.Models.DatabaseModels
 
                 entity.Property(e => e.NewsPhoto)
                     .HasColumnName("NEWS_PHOTO")
-                    .HasMaxLength(512)
                     .IsUnicode(false);
 
                 entity.Property(e => e.NewsTittle)
@@ -218,32 +216,6 @@ namespace e_shop.Models.DatabaseModels
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<ProductPhoto>(entity =>
-            {
-                entity.HasKey(e => e.PhotoId);
-
-                entity.ToTable("PRODUCT_PHOTO");
-
-                entity.HasIndex(e => new { e.CategoryId, e.ProductId })
-                    .HasName("HAS_PHOTO_FK");
-
-                entity.Property(e => e.PhotoId).HasColumnName("PHOTO_ID");
-
-                entity.Property(e => e.CategoryId).HasColumnName("CATEGORY_ID");
-
-                entity.Property(e => e.Photo)
-                    .HasColumnName("PHOTO")
-                    .HasMaxLength(8000)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ProductId).HasColumnName("PRODUCT_ID");
-
-                entity.HasOne(d => d.Products)
-                    .WithMany(p => p.ProductPhoto)
-                    .HasForeignKey(d => new { d.CategoryId, d.ProductId })
-                    .HasConstraintName("FK_PRODUCT__HAS_PHOTO_PRODUCTS");
-            });
-
             modelBuilder.Entity<Products>(entity =>
             {
                 entity.HasKey(e => new { e.CategoryId, e.ProductId });
@@ -259,7 +231,10 @@ namespace e_shop.Models.DatabaseModels
                     .HasColumnName("PRODUCT_ID")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.ProductAmount).HasColumnName("PRODUCT_AMOUNT");
+                entity.Property(e => e.ProductDescription)
+                    .HasColumnName("PRODUCT_DESCRIPTION")
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ProductExpireDate)
                     .HasColumnName("PRODUCT_EXPIRE_DATE")
@@ -270,6 +245,8 @@ namespace e_shop.Models.DatabaseModels
                     .HasColumnName("PRODUCT_NAME")
                     .HasMaxLength(128)
                     .IsUnicode(false);
+
+                entity.Property(e => e.ProductPhoto).HasColumnName("PRODUCT_PHOTO");
 
                 entity.Property(e => e.ProductPrice)
                     .HasColumnName("PRODUCT_PRICE")

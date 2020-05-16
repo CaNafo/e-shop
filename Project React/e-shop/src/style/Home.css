@@ -1,41 +1,66 @@
 #ProductContainer{
     margin-top: 15px;
-    float: left;
+    max-width: 100%!important;    
+    justify-content: flex-start;
+}
+
+#test{
+    text-align: center;
+    margin-left:8%;
 }
 body{
-    background-color: gainsboro !important;
+background-color: gainsboro !important;
 }
-input[type=text] {
-    margin: 10px;
-    width: 55%;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-image: url("../icons/search.png");
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-  }
-  
-  input[type=text]:focus {
-    width: 100%;
-  }
+#search {
+margin: 10px;
+width: 55%;
+box-sizing: border-box;
+border: 2px solid #ccc;
+border-radius: 4px;
+font-size: 16px;
+background-color: white;
+background-image: url("../icons/search.png");
+background-position: 10px 10px; 
+background-repeat: no-repeat;
+padding: 12px 20px 12px 40px;
+-webkit-transition: width 0.4s ease-in-out;
+transition: width 0.4s ease-in-out;
+}
 
-  .columnStyle{
-      margin-top: -1px;
-      border-right: solid 1px rgb(109, 101, 101);
-      background-color: #2196f3      ;
-      height: 100vh !important;
-  }
-  .containerStyle{
-      width: 100%;
-      float: left;
-      min-height: 100%;
-  }
-  .filtersStyle{
-      margin-top: 45%;
-  }
+#search:focus {
+width: 100%;
+}
+
+.columnStyle{
+    margin-top: -1px;
+    border-right: solid 1px rgb(109, 101, 101);
+    background-color: #2196f3      ;
+    height: 100 !important;
+}
+.containerStyle{
+    width: 100% !important;
+    max-width: 100% !important;
+    float: left;
+    min-height: 100%;
+}
+.filtersStyle{
+    margin-top: 45%;
+    margin: 0;     
+    min-height: 100vh !important;
+}
+
+.product{
+    padding: 5px;
+    margin: 5px;
+    border: solid 1px rgb(150, 199, 150);
+    border-radius: 10px;
+}
+
+.btnDetails{
+    margin: 5px;
+}
+
+.photoStyle{
+    height: 150px !important;
+    width: 150px !important;
+}

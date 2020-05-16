@@ -28,7 +28,7 @@ function Navigation() {
           <Nav.Item>
             <Form inline className='ml-auto'>
               <Navbar.Text className='mr-sm-1'>Logged in as</Navbar.Text>
-              <Link to="/components/profile"><Button variant='outline-light' className='mr-sm-2 btn-sm'>{sessionStorage.getItem("name")}</Button></Link>
+              <Link to="/components/profile"><Button variant='outline-light' className='mr-sm-2 btn-sm'>{JSON.parse(sessionStorage.getItem('user'))[0].firstname}</Button></Link>
               <Button variant="outline-warning btn-sm " onClick={event => NavServices.logout(history)}>Log out</Button>
             </Form>
           </Nav.Item>

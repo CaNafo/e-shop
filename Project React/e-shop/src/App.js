@@ -17,6 +17,7 @@ function App() {
         <Route path='/IndexApp' exact component={IndexApp} />
         <Route path='/components/profile' exact component={IndexApp} />
         <Route path='/components/home' exact component={IndexApp} />
+        <Route path='/components/ProductDetails' exact component={IndexApp} />
       </Router>
     </div>
   );

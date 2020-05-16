@@ -1,7 +1,8 @@
 
 const LoginServices = {
     redirectToIndex: function (response, history) {
-        // console.log(response[0].firstName);
+        sessionStorage.setItem('user',JSON.stringify(response));
+
         if (Object.keys(response).length == 0){
             history.push('../');
             history.push('./components/Login');

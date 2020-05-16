@@ -19,11 +19,12 @@ namespace e_shop.Controllers
                 var result = from product in context.Products
                              select new
                              {
-                                 id = product.ProductId,
+                                 ID = product.ProductId,
+                                 categoryID = product.CategoryId,
                                  tittle = product.ProductName,
                                  price = product.ProductPrice,
-                                 amount = product.ProductAmount,
-                                 description = "Ovo je hardkodiran opis"
+                                 description = product.ProductDescription,
+                                 photo = product.ProductPhoto
                              };
 
                 return Ok(result.ToList());

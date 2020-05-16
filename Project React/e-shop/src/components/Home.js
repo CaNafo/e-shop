@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductIndexPreview from '../components/ProductIndexPreview'
 import '../style/Home.css';
-import { Container, Row, Col, FormGroup } from 'react-bootstrap';
+import Static from '../services/Static'
 
 function Home() {
-    let state = {
-        postArray: [
-            { tittle: "Naslov", price: "500$" },
-            { tittle: "Naslov", price: "500$" }
-        ]
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, [])
+
+    const fetchProducts = async () => {
+        const data = await fetch('http://localhost:57703/api/GetAllProducts');
+
+        const products = await data.json();
+
+        setProducts(products);
+        console.log(products)
+    }
+
+    function showProducts() {
+        var elements = [];
+        for (var product of products) {
+            elements.push(
+                <ProductIndexPreview key={product.id}
+                    tittle={product.tittle}
+                    photo={product.photo}
+                    price={product.price}
+                />
+            );
+        }
+        return (
+            elements
+        );
     }
 
     return (
@@ -16,7 +41,7 @@ function Home() {
             <div className='containerStyle container'>
                 <div className='row'>
                     <div className='col-sm-2 columnStyle'>
-                        <div className='filtersStyle'> 
+                        <div className='filtersStyle'>
                             <p>Nesto</p>
                             <p>Nesto</p>
                             <p>Nesto</p>
@@ -24,21 +49,22 @@ function Home() {
                         </div>
                     </div>
                     <div className='col-sm-10'>
-                        <form>
-                            <input type="text" name="search" placeholder="Search.." /><br />
-                            <div id='ProductContainer'>
-                                {
-                                    state.postArray.map((post, index) => {
-                                        return (
-                                            <ProductIndexPreview
-                                                tittle={post.tittle}
-                                                price={post.price}
-                                            />
-                                        )
-                                    })
-                                }
+                        <div>
+                            <input id='search' type="text" name="search" placeholder="Search.." /><br />
+                            {
+                                Static.checkPermision(
+                                    "AddNewProduct",
+                                    <button className='btn btn-primary'>Add new product</button>
+                                )
+                            }
+                            <div id='ProductContainer' className='container'>
+                                <div className='row' id='test'>
+                                    {
+                                        showProducts()
+                                    }
+                                </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
