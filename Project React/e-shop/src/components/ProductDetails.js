@@ -19,7 +19,7 @@ function ProductDetails(props) {
                                 <p>{product[0].description}</p>
                             </div>
                         </div>
-                        <div className='col-sm-2'>
+                        <div className='col-sm'>
                             <div>
                                 <img src={product[0].photo} alt='Not found' />
                                 <h4>{product[0].price}$</h4>
