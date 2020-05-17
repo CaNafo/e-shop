@@ -17,7 +17,6 @@ function Home() {
         const products = await data.json();
 
         setProducts(products);
-        console.log(products)
     }
 
     function showProducts() {
@@ -28,6 +27,7 @@ function Home() {
                     tittle={product.tittle}
                     photo={product.photo}
                     price={product.price}
+                    id = {product.id}
                 />
             );
         }
@@ -58,7 +58,7 @@ function Home() {
                                 )
                             }
                             <div id='ProductContainer' className='container'>
-                                <div className='row' id='test'>
+                                <div className='row' >
                                     {
                                         showProducts()
                                     }

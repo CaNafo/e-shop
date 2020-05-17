@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Static from '../services/Static'
 import '../style/Home.css'
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default class ProductIndexPreview extends Component {
@@ -11,18 +10,17 @@ export default class ProductIndexPreview extends Component {
         return (
             <div className='product productcol-sm-4'>
                 <div >
-                    <h4>{this.props.tittle}</h4>
-                    <br />
+                    <h6>{this.props.tittle}</h6>
                     <img src={this.props.photo} alt="Not found" className='photoStyle'></img>
                     <br />
-                    <h5>Price: {this.props.price}$</h5>
+                    <h5>{this.props.price}$</h5>
                     <Link to={{
                         pathname:'/components/ProductDetails',
-                        props:{
-                            name:'Ovo je ID elementa'
+                        productProps:{
+                            id:this.props.id
                         }
                     }                    
-                    } className='btn btn-sm btn-success btnDetails' value={this.props.id}>Details</Link>
+                    } className='btn btn-sm btn-success btnDetails'>Details</Link>
                     {
                         Static.checkPermision(
                             "DeleteProduct",

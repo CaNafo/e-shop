@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../App.css';
-import { Navbar, Nav, Form, FormControl, Button, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, Form, Button } from 'react-bootstrap';
 import NavServices from '../services/NavService'
 import { Link, useHistory } from 'react-router-dom';
 
 function Navigation() {
 
   let history = useHistory();
+  var name='';
+
+  function getName() {
+    if (JSON.parse(sessionStorage.getItem('user')) != null) {
+      name = JSON.parse(sessionStorage.getItem('user'))[0].firstname;
+    } else {
+      name = '';
+    }
+
+    return name;
+  }
 
   return (
     <>
@@ -28,7 +39,7 @@ function Navigation() {
           <Nav.Item>
             <Form inline className='ml-auto'>
               <Navbar.Text className='mr-sm-1'>Logged in as</Navbar.Text>
-              <Link to="/components/profile"><Button variant='outline-light' className='mr-sm-2 btn-sm'>{JSON.parse(sessionStorage.getItem('user'))[0].firstname}</Button></Link>
+              <Link to="/components/profile"><Button variant='outline-light' className='mr-sm-2 btn-sm'>{getName()}</Button></Link>
               <Button variant="outline-warning btn-sm " onClick={event => NavServices.logout(history)}>Log out</Button>
             </Form>
           </Nav.Item>

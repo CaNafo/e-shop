@@ -1,0 +1,24 @@
+.indexContainer{
+    background-image: url("../icons/wallpaper.jpg") !important;
+}
+.productContainer{
+    margin-top: 7%;
+    background: radial-gradient(rgba(153, 158, 153, 0.829), transparent);
+    padding: 50px;
+    height: 100vh !important;
+}
+.row{
+    width: 100% !important;
+}
+img{
+    padding-top: 60%;
+    width: 100% !important;
+}
+.productContainer p{
+    text-align: start;
+} 
+
+h1{
+    padding-bottom: 2%;
+    padding-top: 10%;
+}
