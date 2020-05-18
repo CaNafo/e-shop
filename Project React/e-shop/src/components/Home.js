@@ -12,7 +12,9 @@ function Home() {
     }, [])
 
     const fetchProducts = async () => {
-        const data = await fetch('http://localhost:57703/api/GetAllProducts');
+        var link = Static.getServerLink()+'api/GetAllProducts';
+
+        const data = await fetch(link);
 
         const products = await data.json();
 
@@ -58,7 +60,7 @@ function Home() {
                                 )
                             }
                             <div id='ProductContainer' className='container'>
-                                <div className='row' >
+                                <div id='productRow' className='row' >
                                     {
                                         showProducts()
                                     }

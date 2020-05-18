@@ -7,6 +7,14 @@ export default class ProductIndexPreview extends Component {
 
     render() {
 
+        const deleteProduct = async (e,id) => {
+            var link = Static.getServerLink()+ 'api/DeleteProduct?ID=' + id;
+            await fetch(link);
+
+            e.preventDefault();
+            window.location.reload();
+        }
+
         return (
             <div className='product productcol-sm-4'>
                 <div >
@@ -15,17 +23,17 @@ export default class ProductIndexPreview extends Component {
                     <br />
                     <h5>{this.props.price}$</h5>
                     <Link to={{
-                        pathname:'/components/ProductDetails',
-                        productProps:{
-                            id:this.props.id
+                        pathname: '/components/ProductDetails',
+                        productProps: {
+                            id: this.props.id
                         }
-                    }                    
+                    }
                     } className='btn btn-sm btn-success btnDetails'>Details</Link>
                     {
                         Static.checkPermision(
                             "DeleteProduct",
-                            <button className='btn btn-sm btn-danger' value={this.props.id}>Delete</button>
-                            )
+                            <button className='btn btn-sm btn-danger' onClick={e => deleteProduct(e,this.props.id)}>Delete</button>
+                        )
                     }
                 </div>
             </div>

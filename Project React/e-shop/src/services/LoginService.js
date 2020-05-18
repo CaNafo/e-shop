@@ -1,9 +1,10 @@
+import Static from '../services/Static';
 
 const LoginServices = {
     redirectToIndex: function (response, history) {
         sessionStorage.setItem('user',JSON.stringify(response));
 
-        if (Object.keys(response).length == 0){
+        if (Object.keys(response).length === 0){
             history.push('../');
             history.push('./components/Login');
         }
@@ -15,7 +16,10 @@ const LoginServices = {
 
     fetchItems : async (e, history, eMail, pass) => {
         e.preventDefault();
-        await fetch('http://localhost:57703/api/Login', {
+        
+        var link = Static.getServerLink()+'api/Login';
+
+        await fetch(link, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

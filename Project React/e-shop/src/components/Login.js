@@ -15,10 +15,10 @@ function Login() {
     }, [])
 
     function checkSession() {
-        if (sessionStorage.getItem('name') != null) {
+        if (sessionStorage.getItem('name') !== null) {
             history.push('/IndexApp');
         } else {
-            if (localStorage.getItem("eMail") != null && localStorage.getItem("pass") != "") {
+            if (localStorage.getItem("eMail") !== null && localStorage.getItem("pass") !== "") {
                 setEmail(localStorage.getItem("eMail"));
                 setPass(localStorage.getItem("pass"));
             }
