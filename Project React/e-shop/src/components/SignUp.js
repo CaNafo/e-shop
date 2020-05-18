@@ -13,8 +13,6 @@ function SignUp() {
     function checkSession() {
         if (sessionStorage.getItem('name') != null) {
             history.push('/IndexApp');
-        } else{
-            history.push('/');
         }
     }
 
@@ -57,8 +55,7 @@ function SignUp() {
 
                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                 <p className="forgot-password text-right">
-                    Already registered  <Link to='/components/Login'>
-                        <a className='ContainerElementMargin loginSignUpLink'>Sign In</a>
+                    Already registered  <Link to='/components/Login'>Sign In
                     </Link>
                 </p>
             </form>

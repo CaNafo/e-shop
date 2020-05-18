@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, useHistory } from 'react-router-dom';
 import './style/IndexApp.css'
 import Nav from './components/Nav'
-function App() {
-  const [name, setName] = useState('');
+import Profile from './components/Profile'
+import Home from './components/Home'
+import ProductDetails from './components/ProductDetails'
+
+function IndexApp() {
+
   let history = useHistory();
 
   useEffect(() => {
@@ -11,23 +15,24 @@ function App() {
   }, [])
 
   function checkSession() {
-    if (sessionStorage.getItem('name') != null) {
-      setName(sessionStorage.getItem('name'));
-    } else
+    if (sessionStorage.getItem('name') == null)
       history.push('/');
   }
 
+
   return (
     <div>
-      <Nav />
       <div className='indexContainer'>
-        <h1>Welcome {name}</h1>
-        <Router>
-
-        </Router>
+        <Nav />
+        <Route path='/components/profile' exact component={Profile} />
+        <Route path='/components/home' exact component={Home} />
+        <Route path='/indexApp' exact component={Home} />
+        <Route path='/components/news' exact component={Profile} />
+        <Route path='/components/ProductDetails' exact component={ProductDetails} />
       </div>
     </div>
+
   );
 }
 
-export default App;
+export default IndexApp;

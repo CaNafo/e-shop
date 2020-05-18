@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using e_shop.Models.DatabaseModels;
 using e_shop.Models;
 
 namespace e_shop.Controllers

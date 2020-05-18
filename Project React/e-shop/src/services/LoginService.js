@@ -1,21 +1,25 @@
+import Static from '../services/Static';
 
 const LoginServices = {
     redirectToIndex: function (response, history) {
-        // console.log(response[0].firstName);
-        if (Object.keys(response).length == 0){
+        sessionStorage.setItem('user',JSON.stringify(response));
+
+        if (Object.keys(response).length === 0){
             history.push('../');
             history.push('./components/Login');
         }
         else {
-            history.push('../IndexApp');
             sessionStorage.setItem('name', response[0].firstname);
-            console.log(response);
+            history.push('../IndexApp');
         }
     },
 
     fetchItems : async (e, history, eMail, pass) => {
         e.preventDefault();
-        await fetch('http://localhost:57703/api/Login', {
+        
+        var link = Static.getServerLink()+'api/Login';
+
+        await fetch(link, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

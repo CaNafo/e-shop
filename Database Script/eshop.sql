@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     4.5.2020. 22.50.54                           */
+/* Created on:     16.5.2020. 12.13.05                          */
 /*==============================================================*/
 
 
@@ -299,7 +299,7 @@ create table NEWS (
    NEWS_DESCRIPTION     varchar(512)         null,
    NEWS_BODY            varchar(2000)        not null,
    NEWS_DATE_TIME       datetime             not null,
-   NEWS_PHOTO           varchar(512)         null,
+   NEWS_PHOTO           nvarchar(MAX)        null,
    constraint PK_NEWS primary key (USER_ID, NEWS_ID)
 )
 go
@@ -392,7 +392,8 @@ create table PRODUCTS (
    PRODUCT_NAME         varchar(128)         not null,
    PRODUCT_PRICE        decimal              not null,
    PRODUCT_EXPIRE_DATE  datetime             null,
-   PRODUCT_AMOUNT       int                  not null,
+   PRODUCT_DESCRIPTION  varchar(2000)        null,
+   PRODUCT_PHOTO        nvarchar(8000)       null,
    constraint PK_PRODUCTS primary key (CATEGORY_ID, PRODUCT_ID)
 )
 go

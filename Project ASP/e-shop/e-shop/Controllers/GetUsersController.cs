@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using e_shop.Models;
+using e_shop.Models.DatabaseModels;
 
 namespace e_shop.Controllers
 {

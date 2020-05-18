@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace e_shop.Models
+namespace e_shop.Models.DatabaseModels
 {
     public partial class Category
     {

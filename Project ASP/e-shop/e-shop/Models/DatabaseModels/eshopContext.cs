@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace e_shop.Models
+namespace e_shop.Models.DatabaseModels
 {
     public partial class eshopContext : DbContext
     {
@@ -32,8 +32,8 @@ namespace e_shop.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=WINDOWS-GIQE8BS\SQLEXPRESS; Database=eshop; Trusted_Connection=True;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server= (LocalDb)\\MSSQLLocalDB; Database = eshop; Trusted_Connection=True;");
             }
         }
 
@@ -123,7 +123,6 @@ namespace e_shop.Models
 
                 entity.Property(e => e.NewsPhoto)
                     .HasColumnName("NEWS_PHOTO")
-                    .HasMaxLength(512)
                     .IsUnicode(false);
 
                 entity.Property(e => e.NewsTittle)
@@ -232,7 +231,10 @@ namespace e_shop.Models
                     .HasColumnName("PRODUCT_ID")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.ProductAmount).HasColumnName("PRODUCT_AMOUNT");
+                entity.Property(e => e.ProductDescription)
+                    .HasColumnName("PRODUCT_DESCRIPTION")
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ProductExpireDate)
                     .HasColumnName("PRODUCT_EXPIRE_DATE")
@@ -243,6 +245,8 @@ namespace e_shop.Models
                     .HasColumnName("PRODUCT_NAME")
                     .HasMaxLength(128)
                     .IsUnicode(false);
+
+                entity.Property(e => e.ProductPhoto).HasColumnName("PRODUCT_PHOTO");
 
                 entity.Property(e => e.ProductPrice)
                     .HasColumnName("PRODUCT_PRICE")

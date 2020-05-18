@@ -1,1 +1,4 @@
-Server= (LocalDb)\MSSQLLocalDB; Database = eshop; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.sqlserver -OutputDir Models
+"Server= (LocalDb)\MSSQLLocalDB; Database = eshop; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.sqlserver -OutputDir Models\DatabaseModels
+
+UPDATE DATABASE:
+Scaffold-DbContext "Server= (LocalDb)\MSSQLLocalDB; Database = eshop; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.sqlserver -OutputDir Models\DatabaseModels -force
