@@ -1,15 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import IndexApp from './IndexApp';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import { BrowserRouter as Router, Route, useHistory } from 'react-router-dom';
-import IndexApp from './IndexApp';
+import BannedAlert from './components/BannedAlert';
+import Static from './services/Static';
 
 function App() {
+
+  function showBanAlert(block) {
+    if (Static.getCookie('banAlert') !== null) {
+      Static.eraseCookie('banAlert');
+      return block;
+    }
+  }
 
   return (
     <div className='AppContainer'>
       <Router>
+        {
+          showBanAlert(
+            <BannedAlert />
+          )
+        }
+        <div id='alertBlock'></div>
         <Route path='/components/Login' exact component={Login} />
         <Route path='/components/SignUp' exact component={SignUp} />
         <Route path='/' exact component={Login} />

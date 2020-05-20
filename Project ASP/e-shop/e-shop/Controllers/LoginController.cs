@@ -24,8 +24,9 @@ namespace e_shop.Controllers
                              {
                                  id = user.UserId,
                                  eMail = user.EMail,
-                                 firstname = user.FirstName,
-                                 lastname = user.LastName,
+                                 firstName = user.FirstName,
+                                 lastName = user.LastName,
+                                 birthDate = user.BirthDate,
                                  roles = context.Roles.Select(role => new {
                                                                              role.RoleId, 
                                                                              role.RoleName,

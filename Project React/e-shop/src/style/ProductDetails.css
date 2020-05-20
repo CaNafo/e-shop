@@ -1,17 +1,23 @@
 .indexContainer{
     background-image: url("../icons/wallpaper.jpg") !important;
+    background-size: 100%;
 }
 .productContainer{
     margin-top: 7%;
     background: radial-gradient(rgba(153, 158, 153, 0.829), transparent);
     padding: 50px;
     height: 100vh !important;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+     -ms-animation: fadein 2s; /* Internet Explorer */
+      -o-animation: fadein 2s; /* Opera < 12.1 */
+         animation: fadein 2s;
 }
 .row{
     width: 100% !important;
 }
 img{
-    padding-top: 10%;
+    padding-top: 5%;
     width: 50% !important;
 }
 .productContainer p{

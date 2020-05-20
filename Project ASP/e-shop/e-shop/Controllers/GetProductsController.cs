@@ -12,21 +12,39 @@ namespace e_shop.Controllers
     {
         [Route("api/GetAllProducts")]
         [HttpGet]
-        public ActionResult<IEnumerable<Products>> GetAllProducts()
+        public ActionResult<IEnumerable<Products>> GetAllProducts(int ?categoryId)
         {
             using (var context = new eshopContext())
             {
-                var result = from product in context.Products
-                             select new
-                             {
-                                 ID = product.ProductId,
-                                 categoryID = product.CategoryId,
-                                 tittle = product.ProductName,
-                                 price = product.ProductPrice,
-                                 photo = product.ProductPhoto
-                             };
+                if(categoryId == null)
+                {
+                    var result = from product in context.Products
+                                 select new
+                                 {
+                                     ID = product.ProductId,
+                                     categoryID = product.CategoryId,
+                                     tittle = product.ProductName,
+                                     price = product.ProductPrice,
+                                     photo = product.ProductPhoto
+                                 };
 
-                return Ok(result.ToList());
+                    return Ok(result.ToList());
+                }
+                else
+                {
+                    var result = from product in context.Products
+                                 where (product.CategoryId == categoryId)
+                                 select new
+                                 {
+                                     ID = product.ProductId,
+                                     categoryID = product.CategoryId,
+                                     tittle = product.ProductName,
+                                     price = product.ProductPrice,
+                                     photo = product.ProductPhoto
+                                 };
+
+                    return Ok(result.ToList());
+                }
             }
         }
 
@@ -44,6 +62,8 @@ namespace e_shop.Controllers
                                  description = products.ProductDescription,
                                  price = products.ProductPrice,
                                  expireDate = products.ProductExpireDate,
+                                 categoryId = products.CategoryId,
+                                 categoryName = context.Category.Where(cat => cat.CategoryId == products.CategoryId).Select(c => c.CategoryName).ToList(),
                                  photo = products.ProductPhoto
                              };
                 return Ok(result.ToList());
