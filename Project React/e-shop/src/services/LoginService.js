@@ -34,7 +34,7 @@ const LoginServices = {
             })
         }).then(response => response.json())
             .then(
-                response => LoginServices.redirectToIndex(response,history)
+                response => LoginServices.redirectToIndex(response,history) & window.location.reload()
             );
     }
 }

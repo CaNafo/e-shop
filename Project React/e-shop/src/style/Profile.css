@@ -1,0 +1,47 @@
+#profileDataContainer{
+    height: 100vh !important;    
+    background-image: url("../icons/profilewp.jpg") !important;
+    background-size: 100%;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+     -ms-animation: fadein 2s; /* Internet Explorer */
+      -o-animation: fadein 2s; /* Opera < 12.1 */
+         animation: fadein 2s;
+}
+
+#profileDataContainer h4{
+    margin: 2%;
+}
+
+#imgDiv{
+    margin-top: 5%;
+    width: 30%;
+    border: solid 1px black;
+    border-radius: 550%;
+}
+
+.rolesStyle{
+    display: inline-block;
+}
+
+#editBtn{
+    width: 7%;
+    font-size: large;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+}
+
+.divStyle{
+    margin-bottom: 2%;
+    display: inline-block;
+}
+
+#profileRoles{
+    color: green;
+}
+
+.photoStyleProfile{
+    height: 150px !important;
+    width: 80% !important;
+    padding: 2%;
+}

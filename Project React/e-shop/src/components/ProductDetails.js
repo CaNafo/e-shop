@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import '../style/ProductDetails.css';
 import EditPhoto from '../icons/addphoto.png';
 import Statics from '../services/Static';
-import { Link } from 'react-router-dom';
 
 function ProductDetails(props) {
 
@@ -114,6 +113,7 @@ function ProductDetails(props) {
                         </div>
                         <div className='col-sm'>
                             <div>
+                                <h4>Category: </h4><h5>{product[0].categoryName}</h5>
                                 <img id='img' src={product[0].photo} alt='Not found' />
                                 <h4 id='price'>{product[0].price}$</h4>
                                 <button id='btnOrder' className='btn btn-sm btn-success'>Order item</button>
@@ -140,7 +140,7 @@ function ProductDetails(props) {
     }, [])
 
     const fetchProduct = async () => {
-        var link = Statics.getServerLink()+'api/GetProduct?ID=' + id;
+        var link = Statics.getServerLink() + 'api/GetProduct?ID=' + id;
         const data = await fetch(link).then(response => response.json())
             .then(
                 response => setProduct(response) & setDefaultValues(response)
