@@ -24,7 +24,9 @@ namespace e_shop.Controllers
                     newUser.BirthDate = content.BirthDate;
                     newUser.EMail = content.EMail;
                     newUser.Password = content.Password;
+                    
                 };
+
                 context.Users.Add(newUser);
                 context.SaveChanges();
 
