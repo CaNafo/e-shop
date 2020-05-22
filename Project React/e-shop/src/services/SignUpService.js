@@ -14,7 +14,7 @@ const SignUpServices = {
         } 
     }, 
 
-    fetchItems : async (e, history,fname, lname, eMail, Pass) => {
+    fetchItems : async (e, history,fname, lname, eMail, Pass, bdate) => {
         e.preventDefault();
         
         var link = Static.getServerLink()+'api/Registration';
@@ -33,11 +33,12 @@ const SignUpServices = {
                 "LastName": lname,
                 "eMail": eMail,
                 "password": Pass,
+                "BirthDate": bdate
                 
             })
         }).then(response => response.json())
             .then(
-                console.log('registerd')
+               history.push('../components/Login')                
             );
     }
 }

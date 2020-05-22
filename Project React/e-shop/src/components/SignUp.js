@@ -80,7 +80,7 @@ function SignUp() {
                     />
                 </div>
                 <div>
-
+                    <label>Password</label>
                     <input type="password"
                         className="form-control"
                         required
@@ -90,7 +90,7 @@ function SignUp() {
 
                 <button type="submit"
                     className="btn btn-primary btn-block"
-                    onClick={set => SignUpServices.fetchItems(set, history, fname, lname, eMail, Pass)}>Sign Up</button>
+                    onClick={set => SignUpServices.fetchItems(set, history, fname, lname, eMail, Pass, bdate)}>Sign Up</button>
 
                 <p className="forgot-password text-right" >
                     Already registered  <Link to='/components/Login'>Sign In
