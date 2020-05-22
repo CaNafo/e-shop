@@ -25,6 +25,7 @@ namespace e_shop.Controllers
                                      categoryID = product.CategoryId,
                                      tittle = product.ProductName,
                                      price = product.ProductPrice,
+                                     amount = product.ProductAmount,
                                      photo = product.ProductPhoto
                                  };
 
@@ -40,6 +41,7 @@ namespace e_shop.Controllers
                                      categoryID = product.CategoryId,
                                      tittle = product.ProductName,
                                      price = product.ProductPrice,
+                                     amount = product.ProductAmount,
                                      photo = product.ProductPhoto
                                  };
 
@@ -58,9 +60,11 @@ namespace e_shop.Controllers
                              where (products.ProductId == ID)
                              select new
                              {
+                                 productId = products.ProductId,
                                  tittle = products.ProductName,
                                  description = products.ProductDescription,
                                  price = products.ProductPrice,
+                                 amount = products.ProductAmount,
                                  expireDate = products.ProductExpireDate,
                                  categoryId = products.CategoryId,
                                  categoryName = context.Category.Where(cat => cat.CategoryId == products.CategoryId).Select(c => c.CategoryName).ToList(),

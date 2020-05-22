@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     16.5.2020. 12.13.05                          */
+/* Created on:     21.5.2020. 00.15.00                          */
 /*==============================================================*/
 
 
@@ -393,7 +393,8 @@ create table PRODUCTS (
    PRODUCT_PRICE        decimal              not null,
    PRODUCT_EXPIRE_DATE  datetime             null,
    PRODUCT_DESCRIPTION  varchar(2000)        null,
-   PRODUCT_PHOTO        nvarchar(8000)       null,
+   PRODUCT_PHOTO        nvarchar(MAX)        null,
+   PRODUCT_AMOUNT       int                  not null,
    constraint PK_PRODUCTS primary key (CATEGORY_ID, PRODUCT_ID)
 )
 go

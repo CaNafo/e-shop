@@ -15,32 +15,47 @@ export default class ProductIndexPreview extends Component {
             window.location.reload();
         }
 
-        function redirectToDetails(id){
+        function redirectToDetails(id) {
             document.getElementById(id).click();
         }
 
+        function checkIfProductIsAvaliable(amount,block) {
+            if (amount > 0) {
+                return block;
+            } else {
+                return (
+                    <h5 id='outOfStockPreview'>Out of stock</h5>
+                );
+            }
+        }
+
         return (
-            <div className='product productcol-sm-4'>
-                <div >
-                    <h6>{this.props.tittle}</h6>
-                    <img src={this.props.photo} alt="Not found" className='photoStyle' onClick={e => redirectToDetails(this.props.id)}></img>
-                    <br />
-                    <h5 id='productPrice'>{this.props.price}$</h5>
-                    <Link id={this.props.id} to={{
-                        pathname: '/components/ProductDetails',
-                        productProps: {
-                            id: this.props.id
+                <div className='product productcol-sm-4'>
+                    <div >
+                        <h6>{this.props.tittle}</h6>
+                        <img src={this.props.photo} alt="Not found" className='photoStyle' onClick={e => redirectToDetails(this.props.id)}></img>
+                        <br />
+                        {
+                            checkIfProductIsAvaliable(
+                                this.props.amount,
+                                <h5 id='productPrice'>{this.props.price}$</h5>
+                            )
                         }
-                    }
-                    } className='btn btn-sm btn-success btnDetails'>Details</Link>
-                    {
-                        Static.checkPermision(
-                            "DeleteProduct",
-                            <button className='btn btn-sm btn-danger' onClick={e => deleteProduct(e, this.props.id)}>Delete</button>
-                        )
-                    }
+                        <Link id={this.props.id} to={{
+                            pathname: '/components/ProductDetails',
+                            productProps: {
+                                id: this.props.id
+                            }
+                        }
+                        } className='btn btn-sm btn-success btnDetails'>Details</Link>
+                        {
+                            Static.checkPermision(
+                                "DeleteProduct",
+                                <button className='btn btn-sm btn-danger' onClick={e => deleteProduct(e, this.props.id)}>Delete</button>
+                            )
+                        }
+                    </div>
                 </div>
-            </div>
         );
     }
 }

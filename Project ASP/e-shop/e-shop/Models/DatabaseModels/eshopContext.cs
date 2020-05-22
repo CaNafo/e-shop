@@ -123,6 +123,7 @@ namespace e_shop.Models.DatabaseModels
 
                 entity.Property(e => e.NewsPhoto)
                     .HasColumnName("NEWS_PHOTO")
+                    .HasMaxLength(8000)
                     .IsUnicode(false);
 
                 entity.Property(e => e.NewsTittle)
@@ -231,6 +232,8 @@ namespace e_shop.Models.DatabaseModels
                     .HasColumnName("PRODUCT_ID")
                     .ValueGeneratedOnAdd();
 
+                entity.Property(e => e.ProductAmount).HasColumnName("PRODUCT_AMOUNT");
+
                 entity.Property(e => e.ProductDescription)
                     .HasColumnName("PRODUCT_DESCRIPTION")
                     .HasMaxLength(2000)
@@ -246,7 +249,10 @@ namespace e_shop.Models.DatabaseModels
                     .HasMaxLength(128)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ProductPhoto).HasColumnName("PRODUCT_PHOTO");
+                entity.Property(e => e.ProductPhoto)
+                    .HasColumnName("PRODUCT_PHOTO")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ProductPrice)
                     .HasColumnName("PRODUCT_PRICE")
