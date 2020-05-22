@@ -12,23 +12,40 @@ namespace e_shop.Controllers
     [ApiController]
     public class RegistrationController : Controller
     {
+       
         [HttpPost]
         public ActionResult<IEnumerable<Users>> JsonStringBody([FromBody] RegistrationModel content)
         {
+          
             using (var context = new eshopContext())
             {
-                Users newUser = new Users();
+               
+                if (!context.Users.ToList().Any(mail => mail.EMail == content.EMail))
                 {
-                    newUser.FirstName = content.FirstName;
-                    newUser.LastName = content.LastName;
-                    newUser.BirthDate = content.BirthDate;
-                    newUser.EMail = content.EMail;
-                    newUser.Password = content.Password;
-                };
-                context.Users.Add(newUser);
-                context.SaveChanges();
+                    Users newUser = new Users();
+                    {
+                        newUser.FirstName = content.FirstName;
+                        newUser.LastName = content.LastName;
+                        newUser.BirthDate = content.BirthDate;
+                        newUser.EMail = content.EMail;
+                        newUser.Password = content.Password;
+                        
+                        context.Users.Add(newUser);
+                        context.SaveChanges();
+
+                        RoleList roleList = new RoleList();
+
+                        roleList.UserId = newUser.UserId;
+                        roleList.RoleId = context.Roles.FirstOrDefault(r => r.RoleName.Equals("User")).RoleId;
+
+                        context.RoleList.Add(roleList);
+                        context.SaveChanges();
+                       
+                    }
+                }
 
                 return new List<Users>();
+
             }
         }
     }

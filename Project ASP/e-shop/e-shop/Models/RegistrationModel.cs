@@ -13,6 +13,7 @@ namespace e_shop.Models
         public DateTime? BirthDate { get; set; }
         public string EMail { get; set; }
         public string Password { get; set; }
+      
 
     }
 }
