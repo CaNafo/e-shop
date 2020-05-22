@@ -17,6 +17,7 @@ namespace e_shop.Models.DatabaseModels
         public DateTime? ProductExpireDate { get; set; }
         public string ProductDescription { get; set; }
         public string ProductPhoto { get; set; }
+        public int ProductAmount { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ICollection<Reserved> Reserved { get; set; }

@@ -49,6 +49,7 @@ function Home() {
                         photo={product.photo}
                         price={product.price}
                         id={product.id}
+                        amount={product.amount}
                     />
                 );
             }
