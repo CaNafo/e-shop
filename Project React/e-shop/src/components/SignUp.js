@@ -77,7 +77,7 @@ function SignUp() {
                         className="btn btn-primary btn-block" 
                         onClick={set => SignUpServices.fetchItems(set, history,fname,lname, eMail, Pass)}>Sign Up</button>
 
-                <p className="forgot-password text-right" style="color:black">
+                <p className="forgot-password text-right" >
                     Already registered  <Link to='/components/Login'>Sign In
                     </Link>
                 </p>
