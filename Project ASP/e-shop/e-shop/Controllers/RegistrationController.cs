@@ -29,11 +29,17 @@ namespace e_shop.Controllers
                         newUser.BirthDate = content.BirthDate;
                         newUser.EMail = content.EMail;
                         newUser.Password = content.Password;
-
-
+                        
                         context.Users.Add(newUser);
                         context.SaveChanges();
 
+                        RoleList roleList = new RoleList();
+
+                        roleList.UserId = newUser.UserId;
+                        roleList.RoleId = context.Roles.FirstOrDefault(r => r.RoleName.Equals("User")).RoleId;
+
+                        context.RoleList.Add(roleList);
+                        context.SaveChanges();
                        
                     }
                 }
