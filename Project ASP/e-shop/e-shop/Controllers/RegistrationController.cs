@@ -30,6 +30,7 @@ namespace e_shop.Controllers
                         newUser.EMail = content.EMail;
                         newUser.Password = content.Password;
 
+
                         context.Users.Add(newUser);
                         context.SaveChanges();
 
