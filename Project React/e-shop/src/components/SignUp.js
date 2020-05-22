@@ -11,26 +11,6 @@ function SignUp() {
 
     let history = useHistory();
 
-   /* useEffect(() => {
-        checkSession();
-    }, [])
-
-    function checkSession() {
-        if (sessionStorage.getItem('name') !== null) {
-            history.push('/IndexApp');
-        }
-        else{
-        
-            if (localStorage.getItem("fname")!==null && localStorage.getItem("lname")!==null 
-            && localStorage.getItem("eMail")!==null && localStorage.getItem("Pass")!==''){
-                setFname(localStorage.getItem("fname"));
-                setLname(localStorage.getItem("lname"));
-                setEmail(localStorage.getItem("eMail"));
-                setPass(localStorage.getItem("Pass"));
-            }
-            history.push('/');
-        }
-    } */
     function onCheck(e) {
         if (e.checked) {
             localStorage.setItem("fname", fname);
@@ -61,6 +41,7 @@ function SignUp() {
                     <label>First name</label>
                     <input type="text" 
                            className="form-control" 
+                           required
                            placeholder="First name" 
                            value={fname} onChange={set => setFname(set.target.value)} />
                 </div>
@@ -69,6 +50,7 @@ function SignUp() {
                     <label>Last name</label>
                     <input type="text" 
                             className="form-control" 
+                            required
                             placeholder="Last name" 
                             value={lname}  onChange={set => setLname(set.target.value)} />
                 </div>
@@ -77,6 +59,7 @@ function SignUp() {
                     <label>Email address</label>
                     <input type="email" 
                             className="form-control" 
+                            required
                             placeholder="Enter email" 
                             value={eMail}  onChange={set => setEmail(set.target.value)} />
                 </div>
@@ -85,6 +68,7 @@ function SignUp() {
                     <label>Password</label>
                     <input type="password" 
                             className="form-control" 
+                            required
                             placeholder="Enter password" 
                             value={Pass}  onChange={set => setPass(set.target.value)} />
                 </div>

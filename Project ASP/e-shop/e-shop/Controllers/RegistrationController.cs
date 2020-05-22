@@ -20,13 +20,8 @@ namespace e_shop.Controllers
             using (var context = new eshopContext())
             {
                
-                if (context.Users.ToList().Any(mail => mail.EMail == content.EMail))
+                if (context.Users.ToList().Any(mail => mail.EMail != content.EMail))
                 {
-                   
-                }
-                else
-                {
-
                     Users newUser = new Users();
                     {
                         newUser.FirstName = content.FirstName;
