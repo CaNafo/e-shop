@@ -11,22 +11,66 @@ function Home() {
     useEffect(() => {
         fetchProducts();
         fetchCategorys();
+        Static.setInputFilter(document.getElementById('priceFrom'), function (value) {
+            return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+        });
+
+        Static.setInputFilter(document.getElementById('priceTo'), function (value) {
+            return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+        });
     }, [])
 
     const fetchProducts = async () => {
-        var categoryId = sessionStorage.getItem('categoryId');
-        var link = Static.getServerLink() + 'api/GetAllProducts';
-        
-        if(categoryId !== null)
-            link += '?categoryId=' + categoryId;
+        var categoryId = document.getElementById('selectCategory').value;
+        if (categoryId.length === 0)
+            categoryId = -1;
 
-        sessionStorage.removeItem('categoryId');
+        var priceFrom = document.getElementById('priceFrom').value;
+        if (priceFrom.length === 0)
+            priceFrom = -1;
+
+        var priceTo = document.getElementById('priceTo').value;
+        if (priceTo.length === 0)
+            priceTo = -1;
+
+        var search = document.getElementById('search').value;
+        if (search.length === 0)
+            search = '';
+
+        var amount = document.getElementById('amount').value;
+        if (amount.length === 0)
+            amount = -1;
+
+        var link = Static.getServerLink() + 'api/GetAllProducts';
+
+
+        link += '?categoryId=' + categoryId
+            + '&priceFrom=' + priceFrom
+            + '&priceTo=' + priceTo
+            + '&name=' + search
+            + '&amount=' + amount;
+
+
 
         const data = await fetch(link);
 
         const products = await data.json();
 
         setProducts(products);
+    }
+
+    const fetchProductsByName = async (searchContent) => {
+
+        var link = Static.getServerLink() + 'api/GetProductWithName';
+
+        if (searchContent.length === 0)
+            searchContent = '';
+
+        link += '?name=' + searchContent;
+
+        await fetch(link).then(response => response.json()).then(
+            response => setProducts(response) & showProducts()
+        );
     }
 
     const fetchCategorys = async () => {
@@ -76,8 +120,7 @@ function Home() {
     }
 
     function refreshWithFilters() {
-        sessionStorage.setItem('categoryId', document.getElementById('selectCategory').value);
-        window.location.reload();
+        return showProducts();
     }
 
     return (
@@ -92,26 +135,31 @@ function Home() {
                                 <div className='filtersStyle'>
                                     <div className='filterDiv'>
                                         <h5>From $ - To $</h5>
-                                        <input className='filterInput' type='text'></input>
+                                        <input id='priceFrom' className='filterInput' type='text'></input>
                                     </div>
                                 -
                                     <div className='filterDiv'>
-                                        <input className='filterInput' type='text'></input>
+                                        <input id='priceTo' className='filterInput' type='text'></input>
                                     </div>
                                 </div>
+                                <div className='filterDiv'>
+                                    <h5>Amount</h5>
+                                    <input id='amount' className='filterInput' type='text'></input>
+                                </div>
                             </div>
+
                             <select id='selectCategory' className="form-control placeholder">
                                 <option value="">Select category</option>
                                 {
                                     showCategorys()
                                 }
                             </select>
-                            <button id='refreshBtn' className='btn btn-success' onClick={e => refreshWithFilters()}>Refresh</button>
+                            <button id='refreshBtn' className='btn btn-success' onClick={e => fetchProducts()}>Refresh</button>
                         </div>
                     </div>
                     <div className='col-sm-8'>
                         <div>
-                            <input id='search' type="text" name="search" placeholder="Search.." /><br />
+                            <input id='search' type="text" name="search" placeholder="Search.." onChange={e => fetchProductsByName(e.target.value)} /><br />
                             {
                                 Static.checkPermision(
                                     "AddNewProduct",

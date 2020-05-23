@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     21.5.2020. 00.15.00                          */
+/* Created on:     23.5.2020. 02.25.11                          */
 /*==============================================================*/
 
 
@@ -390,7 +390,7 @@ create table PRODUCTS (
    PRODUCT_ID           int                  identity,
    CATEGORY_ID          int                  not null,
    PRODUCT_NAME         varchar(128)         not null,
-   PRODUCT_PRICE        decimal              not null,
+   PRODUCT_PRICE        decimal(10,3)        not null,
    PRODUCT_EXPIRE_DATE  datetime             null,
    PRODUCT_DESCRIPTION  varchar(2000)        null,
    PRODUCT_PHOTO        nvarchar(MAX)        null,

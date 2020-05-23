@@ -23,15 +23,18 @@ function Navigation() {
   return (
     <>
       <Navbar variant="dark" expant='lg' className='navBackground'>
-        <Navbar.Brand as={Link} to="/components/home" className='custNav'>E-Shop</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/components/news" className='custNav'>E-Shop</Navbar.Brand>
         <Nav className="container"  >
           <Nav.Item>
             <Nav>
               <Nav.Item>
-                <Nav.Link className='navItem' as={Link} to="/components/home">Home</Nav.Link>
+                <Nav.Link className='navItem' as={Link} to="/components/news">News</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link className='navItem' as={Link} to="/components/profile">News</Nav.Link>
+                <Nav.Link className='navItem' as={Link} to="/components/home">Products</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className='navItem' as={Link} to="/components/UserManagment">User Managment</Nav.Link>
               </Nav.Item>
             </Nav>
           </Nav.Item>
