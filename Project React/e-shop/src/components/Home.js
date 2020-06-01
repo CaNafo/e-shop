@@ -174,19 +174,9 @@ function Home() {
                             {
                                 Static.checkPermision(
                                     "AddNewProduct",
-                                    <button className='btn btn-primary' as={Link} to="/components/AddProd">Add new product</button>
+                                    <Link className='btn btn-primary' as={Link} to="/components/AddProd">Add new product</Link>
                                 )
                             }
-
-                            <div className='news'>
-                                <br></br>
-                                <h3>News</h3>
-                                <textarea id='newsTitle' placeholder='Add news title...' ></textarea>
-                                <br></br>
-                                <textarea id='newsBody' placeholder='Add news content...'></textarea>
-                                <br></br>
-                                <button className='btn btn-primary' onClick='showNews()'>Post</button>
-                            </div>
 
                             <div id='ProductContainer' className='container'>
                                 {

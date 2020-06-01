@@ -34,7 +34,11 @@ function App() {
         <Route path='/components/home' exact component={IndexApp} />
         <Route path='/components/news' exact component={IndexApp} />
         <Route path='/components/ProductDetails' exact component={IndexApp} />
+<<<<<<< HEAD
         <Route path='/components/UserManagment' exact component={IndexApp} />
+=======
+        <Route path='/components/AddProd' exact component={IndexApp} />
+>>>>>>> 3c9c458... Add prod
       </Router>
     </div>
   );

@@ -8,8 +8,6 @@ function AddProd(props) {
     var props = props.location.productProps;
     var id;
 
-    const [productId, setProductId] = useState();
-    const [product, setProduct] = useState();
     const [tittle, setTittle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -26,7 +24,6 @@ function AddProd(props) {
         e.preventDefault();
 
         var product = {
-            'productId': productId,
             'tittle': tittle,
             'description': description,
             'price': price,
@@ -104,50 +101,7 @@ function AddProd(props) {
         }
     }
 
-    function showProduct() {
-        if (product !== undefined) {
-            return (
-                <>
-                    <div className='row'>
-                        <div className='col-sm'>
-                            <div>
-                                <textarea id='addTittle' onChange={event => setTittle(event.target.value)}></textarea>
-                                <textarea id='addDescription' onChange={event => setDescription(event.target.value)}></textarea>
-                                <button id='btnUpdate' >Add</button>
-                                <button id='btnCancel' >Cancel</button>
-                            </div>>
-                        </div>
-                        <div className='col-sm'>
-                            <div>
-                                <select id='selectCategory' className="form-control placeholder">
-                                    {
-                                        showCategorys()
-                                    }
-                                </select>
-                                
-                                <img id='addImg' src={EditPhoto} alt='Not found' onClick={e => openFileDialog()} />
-                                <h4 id='addPriceTxt'  >Price:</h4>
-                                <textarea id='addPrice' onChange={event => setPrice(event.target.value)}></textarea>
-                                <br />
-                                <h4 id='addAmountTxt'  >Amount:</h4>
-                                <br />
-                                <textarea id='addAmount' onChange={event => setAmount(event.target.value)}></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </>
-            )
-        }
-    }
-
     useEffect(() => {
-        if (props !== undefined) {
-            id = props.id;
-            localStorage.setItem('lastProduct', id);
-        } else {
-            id = localStorage.getItem('lastProduct');
-        }
-        fetchProduct();
         fetchCategorys();
     }, [])
 
@@ -161,19 +115,37 @@ function AddProd(props) {
         setCategorys(categorys);
     }
 
-    const fetchProduct = async () => {
-        var link = Statics.getServerLink() + 'api/GetProduct?ID=' + id;
-        const data = await fetch(link).then(response => response.json())
-            .then(
-                response => setProduct(response)
-            );
-    }
-
     return (
         <div className='container productContainer'>
-            {
-                showProduct()
-            }
+            <div className='row'>
+                <div className='col-sm'>
+                    <div>
+                        <h4>Tittle:</h4>
+                        <textarea id='addTittle' onChange={event => setTittle(event.target.value)}></textarea><br/>
+                        <h4>Description:</h4>
+                        <textarea id='editDescription' onChange={event => setDescription(event.target.value)}></textarea><br/>
+                        <button id='btnUpdate' className='btn btn-info buttonsEdit' >Add</button>
+                        <button id='btnCancel' className='btn btn-warning buttonsEdit' >Cancel</button>
+                    </div>>
+                        </div>
+                <div className='col-sm'>
+                    <div>
+                        <select id='selectCategory' className="form-control placeholder">
+                            {
+                                showCategorys()
+                            }
+                        </select>
+
+                        <img id='editImg' src={EditPhoto} alt='Not found' onClick={e => openFileDialog()} />
+                        <h4 id='addPriceTxt'  >Price:</h4>
+                        <textarea id='addPrice' onChange={event => setPrice(event.target.value)}></textarea>
+                        <br />
+                        <h4 id='addAmountTxt'  >Amount:</h4>
+                        <br />
+                        <textarea id='addAmount' onChange={event => setAmount(event.target.value)}></textarea>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

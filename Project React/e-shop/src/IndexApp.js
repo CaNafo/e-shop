@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, useHistory } from 'react-router-dom';
+<<<<<<< HEAD
 import './style/IndexApp.css'
 import Nav from './components/Nav'
 import Profile from './components/Profile'
@@ -9,6 +10,15 @@ import UserManagment from './components/UserManagment'
 import ProductDetails from './components/ProductDetails'
 import Static from './services/Static'
 import AddProd from './components/AddProd';
+=======
+import './style/IndexApp.css';
+import Nav from './components/Nav';
+import Profile from './components/Profile';
+import Home from './components/Home';
+import ProductDetails from './components/ProductDetails';
+import AddProd from './components/AddProd';
+import Static from './services/Static';
+>>>>>>> 3c9c458... Add prod
 
 function IndexApp() {
 
