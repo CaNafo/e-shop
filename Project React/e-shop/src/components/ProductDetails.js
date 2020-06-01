@@ -68,6 +68,14 @@ function ProductDetails(props) {
         document.getElementById('editAmount').style.display = "initial";
         document.getElementById('selectCategory').style.display = "initial";
 
+        Statics.setInputFilter(document.getElementById('editPrice'), function (value) {
+            return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+        });
+
+        Statics.setInputFilter(document.getElementById('editAmount'), function (value) {
+            return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+        });
+
     }
 
     const onUpdate = async (e) => {
@@ -78,7 +86,7 @@ function ProductDetails(props) {
             'tittle': tittle,
             'description': description,
             'price': price,
-            'amount': amount,
+            'amount':  parseInt(amount),
             'category': document.getElementById('selectCategory').value,
             'photo': photo
         };
@@ -240,6 +248,7 @@ function ProductDetails(props) {
         }
         fetchProduct();
         fetchCategorys();
+
     }, [])
 
     const fetchCategorys = async () => {

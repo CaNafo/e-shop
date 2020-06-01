@@ -1,0 +1,10 @@
+.UserManagmentContainer{
+    height: 100vh !important;
+}
+.UserManagmentImg{
+    padding: 0 !important;
+    width: 50px !important;
+}
+.UserManagmentBtn{
+    margin: 1px;
+}

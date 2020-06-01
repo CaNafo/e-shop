@@ -4,6 +4,8 @@ import './style/IndexApp.css'
 import Nav from './components/Nav'
 import Profile from './components/Profile'
 import Home from './components/Home'
+import News from './components/News'
+import UserManagment from './components/UserManagment'
 import ProductDetails from './components/ProductDetails'
 import Static from './services/Static'
 
@@ -24,9 +26,10 @@ function IndexApp() {
           <Nav />
           <Route path='/components/profile' exact component={Profile} />
           <Route path='/components/home' exact component={Home} />
-          <Route path='/indexApp' exact component={Home} />
-          <Route path='/components/news' exact component={Profile} />
+          <Route path='/indexApp' exact component={News} />
+          <Route path='/components/news' exact component={News} />
           <Route path='/components/ProductDetails' exact component={ProductDetails} />
+          <Route path='/components/UserManagment' exact component={UserManagment} />
         </div>
       );
     }
