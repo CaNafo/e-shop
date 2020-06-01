@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import ProductIndexPreview from '../components/ProductIndexPreview'
+import ProductIndexPreview from '../components/ProductIndexPreview';
 import '../style/Home.css';
-import Static from '../services/Static'
+import Static from '../services/Static';
+import Statics from '../services/Static';
+import { Link } from 'react-router-dom';
+
 
 function Home() {
 
     const [products, setProducts] = useState([]);
     const [categorys, setCategorys] = useState([]);
+
+
 
     useEffect(() => {
         fetchProducts();
@@ -42,7 +47,6 @@ function Home() {
             amount = -1;
 
         var link = Static.getServerLink() + 'api/GetAllProducts';
-
 
         link += '?categoryId=' + categoryId
             + '&priceFrom=' + priceFrom
@@ -97,6 +101,10 @@ function Home() {
                     />
                 );
             }
+
+
+
+
             return (
                 <div id='productRow' className='row' >
                     {
@@ -117,6 +125,9 @@ function Home() {
         return (
             elements
         );
+    }
+    function showNews() {
+
     }
 
     function refreshWithFilters() {
@@ -163,9 +174,20 @@ function Home() {
                             {
                                 Static.checkPermision(
                                     "AddNewProduct",
-                                    <button className='btn btn-primary'>Add new product</button>
+                                    <button className='btn btn-primary' as={Link} to="/components/AddProd">Add new product</button>
                                 )
                             }
+
+                            <div className='news'>
+                                <br></br>
+                                <h3>News</h3>
+                                <textarea id='newsTitle' placeholder='Add news title...' ></textarea>
+                                <br></br>
+                                <textarea id='newsBody' placeholder='Add news content...'></textarea>
+                                <br></br>
+                                <button className='btn btn-primary' onClick='showNews()'>Post</button>
+                            </div>
+
                             <div id='ProductContainer' className='container'>
                                 {
                                     showProducts()
