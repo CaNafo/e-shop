@@ -121,20 +121,21 @@ function AddProd(props) {
                 <div className='col-sm'>
                     <div>
                         <h4>Tittle:</h4>
-                        <textarea id='addTittle' onChange={event => setTittle(event.target.value)}></textarea><br/>
-                        <h4>Description:</h4>
-                        <textarea id='editDescription' onChange={event => setDescription(event.target.value)}></textarea><br/>
-                        <button id='btnUpdate' className='btn btn-info buttonsEdit' >Add</button>
-                        <button id='btnCancel' className='btn btn-warning buttonsEdit' >Cancel</button>
-                    </div>>
-                        </div>
-                <div className='col-sm'>
-                    <div>
-                        <select id='selectCategory' className="form-control placeholder">
+                        <textarea id='addTittle' onChange={event => setTittle(event.target.value)}></textarea>
+                        <select id='selectCategoryAdd' className="form-control placeholder">
                             {
                                 showCategorys()
                             }
                         </select>
+                        <h4>Description:</h4>
+                        <textarea id='editDescription' onChange={event => setDescription(event.target.value)}></textarea><br/>
+                        <button id='btnUpdate' className='btn btn-info buttonsEdit' onClick={e=>onUpdate(e)} >Add</button>
+                        <button id='btnCancel' className='btn btn-warning buttonsEdit' onClick={e => onCancel()} >Cancel</button>
+                    </div>>
+                        </div>
+                <div className='col-sm'>
+                    <div>
+                       
 
                         <img id='editImg' src={EditPhoto} alt='Not found' onClick={e => openFileDialog()} />
                         <h4 id='addPriceTxt'  >Price:</h4>
