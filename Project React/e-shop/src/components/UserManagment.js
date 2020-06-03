@@ -11,12 +11,20 @@ function UserManagment() {
         fetchUsers();
     }, [])
 
-    function deleteUser(id) {
-        console.log(id + ' Id korisnika');
+    const deleteUser = async (id) => {
+        var link = Static.getServerLink() + 'api/DeleteUser?ID=' + id;
+
+        await fetch(link).then(
+            window.location.reload()
+        );
     }
 
-    function blockUser(id) {
-        console.log(id + ' Id korisnika za blokiranje');
+    const blockUser = async (id) => {
+        var link = Static.getServerLink() + 'api/BlockUser?ID=' + id;
+
+        await fetch(link).then(
+            console.log(id + "dadasd")
+        );
     }
 
     function showAllUsers() {
@@ -30,12 +38,12 @@ function UserManagment() {
                             <img className='UserManagmentImg' src={ProfileImg}></img>
                             <h6>{user.eMail}</h6>
                             <br />
-                            <button className='btn btn-sm btn-warning UserManagmentBtn'
-                                onClick={e => deleteUser(user.userId)}>
+                            <button value={user.userId} className='btn btn-sm btn-warning UserManagmentBtn'
+                                onClick={e => deleteUser(e.target.value)}>
                                 Delete
                             </button>
-                            <button className='btn btn-sm btn-danger UserManagmentBtn'
-                                onClick={e => blockUser(user.userId)}>
+                            <button value={user.userId} className='btn btn-sm btn-danger UserManagmentBtn'
+                                onClick={e => blockUser(e.target.value)}>
                                 Block
                             </button>
                         </div>

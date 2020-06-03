@@ -14,14 +14,24 @@ namespace e_shop.Controllers
     [ApiController]
     public class DeleteBlockUserController : Controller
     {
+        [Route("api/DeleteUser")]
         public int DeleteUser(int ID)
         {
             using (var context = new eshopContext())
             {
+                var deleteRoleList = context.RoleList.Where(user => user.UserId == ID);
+
+                if (deleteRoleList != null)
+                {
+                    context.RoleList.RemoveRange(deleteRoleList);
+                    context.SaveChanges();
+                }
+
                 var itemToRemove = context.Users.SingleOrDefault(user => user.UserId == ID); //returns a single item.
 
                 if (itemToRemove != null)
                 {
+                    
                     context.Users.Remove(itemToRemove);
                 }
 
@@ -29,15 +39,16 @@ namespace e_shop.Controllers
             }
         }
 
+        [Route("api/BlockUser")]
         public int BlockUser(int ID)
         {
             using (var context = new eshopContext())
             {
-                var itemToRemove = context.Users.Where(user => user.UserId == ID);
+                var itemToRemove = context.RoleList.Where(user => user.UserId == ID);
 
                 if (itemToRemove != null)
                 {
-                    context.Users.RemoveRange(itemToRemove);
+                    context.RoleList.RemoveRange(itemToRemove);
                 }
 
                 return context.SaveChanges();
