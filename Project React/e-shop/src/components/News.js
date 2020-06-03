@@ -7,27 +7,29 @@ function News() {
     return (
         <div className='NewsDiv'>
             <div className='News'>
-                <div className='container'>
-                    <div className='row'>
-                        <div className='col'>
+                
+                   
+                        
                             <div>
-                                <h1 id='newsTittle'>Tittle of the news</h1>
-
-                                <p>"The breathing techniques required to play these instruments for a few hours put you in a kind of trance," says Miguel Cordoba, who plays the siku flute.
-
-                                But as soon as the rehearsal finishes they are all too aware of how their life has changed. Because they are not rehearsing back home in La Paz, Bolivia, but in the shadow of a German castle where they have been stranded for 73 days.
-
-                                The musicians, most of whom have never left Bolivia before, were expecting to spend just over a fortnight this spring touring east Germany's concert halls.
-
-Instead they are holed up in the buildings and grounds of the sprawling estate of Rheinsberg Palace, a moated castle which has been home to generations of German royalty and aristocracy, an hour and a half's drive northwest of Berlin.</p>
+                               <br></br>
+                                     <section class="newsbody text-center">
+                                        <div class="container">
+                                            <h1 class="jumbotron-heading">News</h1>
+                                            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+                                            <p>
+                                            <a href="#" class="btn btn-primary">Previous</a>
+                                            <a href="#" class="btn btn-secondary">Next</a>
+                                            </p>
+                                        </div>
+                                        </section>
 
                             </div>
-                        </div>
+                        
                         <div className='col'>
-                            <img src={Search} id='newsImg'></img>
+                            <img id='newsImg'></img>
                         </div>
-                    </div>
-                </div>
+                   
+                
             </div>
         </div>
     );

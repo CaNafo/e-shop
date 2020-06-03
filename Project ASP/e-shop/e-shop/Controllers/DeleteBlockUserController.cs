@@ -10,6 +10,7 @@ using e_shop.Models;
 
 namespace e_shop.Controllers
 {
+    [Route("api/Delete")]
     [ApiController]
     public class DeleteBlockUserController : Controller
     {

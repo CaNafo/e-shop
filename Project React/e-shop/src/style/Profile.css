@@ -27,7 +27,7 @@
 #editBtn{
     width: 7%;
     font-size: large;
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'B612', sans-serif;
     font-weight: bold;
 }
 
@@ -37,11 +37,14 @@
 }
 
 #profileRoles{
-    color: green;
+    color:#264026;
 }
 
 .photoStyleProfile{
     height: 150px !important;
     width: 80% !important;
     padding: 2%;
+}
+ul{
+    list-style-type: square;
 }

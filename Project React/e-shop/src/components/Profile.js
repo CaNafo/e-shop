@@ -58,9 +58,10 @@ function Profile() {
               <h4>E-mail: {eMail}</h4>
             </div>
           </div>
+          <br></br>
           <div className='rolesStyle'>
             <div>
-              <h2>Roles:</h2>
+              <h3>Roles</h3>
               <ul>
                 {showRoles()}
               </ul>
