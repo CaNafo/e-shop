@@ -17,8 +17,10 @@ namespace e_shop.Controllers
             {
                 var productDB = context.Products.FirstOrDefault(item => item.ProductId == content.productId);
 
-                if (productDB != null)
+                if (productDB != null && productDB.CategoryId != content.category)
                 {
+                    var reserved = context.Reserved.Where(item => item.ProductId == content.productId);
+                    context.Reserved.RemoveRange(reserved);
                     context.Products.Remove(productDB);
                     context.SaveChanges();
 
@@ -34,6 +36,18 @@ namespace e_shop.Controllers
                     context.SaveChanges();
 
                     return product.ProductId.ToString();
+                }
+                else
+                {
+                    productDB.ProductName = content.tittle;
+                    productDB.ProductPrice = content.price;
+                    productDB.ProductAmount = content.amount;
+                    productDB.ProductDescription = content.description;
+                    productDB.ProductPhoto = content.photo;
+
+                    context.SaveChanges();
+
+                    return productDB.ProductId.ToString();
                 }
 
             }

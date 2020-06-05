@@ -10,16 +10,16 @@ using e_shop.Models;
 
 namespace e_shop.Controllers
 {
-    [Route("api/Delete")]
     [ApiController]
     public class DeleteBlockUserController : Controller
     {
+        [HttpPost]
         [Route("api/DeleteUser")]
-        public int DeleteUser(int ID)
+        public int DeleteUser([FromBody] UserManagmentModel content)
         {
             using (var context = new eshopContext())
             {
-                var deleteRoleList = context.RoleList.Where(user => user.UserId == ID);
+                var deleteRoleList = context.RoleList.Where(user => user.UserId == content.ID);
 
                 if (deleteRoleList != null)
                 {
@@ -27,7 +27,31 @@ namespace e_shop.Controllers
                     context.SaveChanges();
                 }
 
-                var itemToRemove = context.Users.SingleOrDefault(user => user.UserId == ID); //returns a single item.
+                var itemToRemove = context.Users.SingleOrDefault(user => user.UserId == content.ID); //returns a single item.
+
+                var deleteReserved = context.Reserved.Where(user => user.UserId == content.ID);
+
+                if (deleteReserved != null)
+                {
+                    context.Reserved.RemoveRange(deleteReserved);
+                    context.SaveChanges();
+                }
+
+                var deleteCart = context.Cart.Where(user => user.UserId == content.ID);
+
+                if (deleteCart != null)
+                {
+                    context.Cart.RemoveRange(deleteCart);
+                    context.SaveChanges();
+                }
+
+                var deleteNews = context.News.Where(user => user.UserId == content.ID);
+
+                if (deleteNews != null)
+                {
+                    context.News.RemoveRange(deleteNews);
+                    context.SaveChanges();
+                }
 
                 if (itemToRemove != null)
                 {
@@ -40,11 +64,11 @@ namespace e_shop.Controllers
         }
 
         [Route("api/BlockUser")]
-        public int BlockUser(int ID)
+        public int BlockUser([FromBody] UserManagmentModel content)
         {
             using (var context = new eshopContext())
             {
-                var itemToRemove = context.RoleList.Where(user => user.UserId == ID);
+                var itemToRemove = context.RoleList.Where(user => user.UserId == content.ID);
 
                 if (itemToRemove != null)
                 {
@@ -54,5 +78,7 @@ namespace e_shop.Controllers
                 return context.SaveChanges();
             }
         }
+
+       
     }
 }

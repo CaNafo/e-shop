@@ -1,9 +1,6 @@
 .NewsDiv{
     height: 100vh !important;
 }
-#newsTittle{
-    margin-top: 5% !important;
-}
 
 #newsImg{
     margin-top: 5% !important;
@@ -24,4 +21,26 @@
 
 .newsbody{
     margin-top: 5%;
+}
+
+#divBtnNextPerv{
+    margin: 5px;
+    padding: 5px;
+}
+
+#btnPerv, #btnNext{
+    margin: 2px;
+    width: 10%;
+}
+
+#addDescription{
+    margin: 0 auto;
+    width: 50%;
+    height: 100px !important;
+}
+
+#addBody{
+    margin-top: 5px !important;
+    width: 100%;
+    height: 250px !important;
 }

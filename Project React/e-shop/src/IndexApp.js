@@ -9,6 +9,7 @@ import UserManagment from './components/UserManagment'
 import ProductDetails from './components/ProductDetails'
 import Static from './services/Static'
 import AddProd from './components/AddProd';
+import CartPreview from './components/CartPreview';
 
 function IndexApp() {
 
@@ -32,6 +33,7 @@ function IndexApp() {
           <Route path='/components/ProductDetails' exact component={ProductDetails} />
           <Route path='/components/UserManagment' exact component={UserManagment} />
           <Route path='/components/AddProd' exact component={AddProd} />
+          <Route path='/components/CartPreview' exact component={CartPreview} />
         </div>
       );
     }

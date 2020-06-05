@@ -102,9 +102,6 @@ function Home() {
                 );
             }
 
-
-
-
             return (
                 <div id='productRow' className='row' >
                     {

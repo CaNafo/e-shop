@@ -86,7 +86,7 @@ function ProductDetails(props) {
             'tittle': tittle,
             'description': description,
             'price': price,
-            'amount':  parseInt(amount),
+            'amount': parseInt(amount),
             'category': document.getElementById('selectCategory').value,
             'photo': photo
         };
@@ -105,10 +105,10 @@ function ProductDetails(props) {
             body: JSON.stringify(
                 product
             )
-        }).then(response => response.json()).then(response =>refreshThePage(response));
+        }).then(response => response.json()).then(response => refreshThePage(response));
     }
 
-    function refreshThePage(productId){
+    function refreshThePage(productId) {
         localStorage.setItem('lastProduct', productId);
 
         window.location.reload();
@@ -137,6 +137,17 @@ function ProductDetails(props) {
             elements
         );
     }
+
+    const addToCart = async () => {
+        if (document.getElementById('selectAmount').selectedIndex !== 0) {
+            var link = Statics.getServerLink() + 'api/AddToCart?ID=' + Statics.getUser().id + '&prodID=' + productId + '&amount=' + parseInt(document.getElementById('selectAmount').value);
+
+            await fetch(link).then(
+                window.location.reload()
+            );
+        }
+    }
+
 
     function openFileDialog(accept, callback) {
 
@@ -210,16 +221,20 @@ function ProductDetails(props) {
 
                                 <div id='orderStockDiv'>
                                     {
-                                        checkIfProductIsAvaliable(
-                                            <div id='orderDiv'>
-                                                <select id='selectAmount' className=" placeholder">
-                                                    <option value="">Select amount</option>
-                                                    {
-                                                        showProductAmount()
-                                                    }
-                                                </select>
-                                                <button id='btnOrder' className='btn btn-sm btn-success'>Order item</button>
-                                            </div>
+                                        Statics.checkPermision(
+                                            'AddToCart',
+                                            checkIfProductIsAvaliable(
+                                                <div id='orderDiv' >
+                                                    <select id='selectAmount' className=" placeholder">
+                                                        <option value="">Select amount</option>
+                                                        {
+                                                            showProductAmount()
+                                                        }
+                                                    </select>
+                                                    <button id='btnOrder' className='btn btn-sm btn-success' onClick={e => addToCart(product[0].id)}>Add to cart</button>
+                                                </div>
+                                            )
+
                                         )
                                     }
                                 </div>

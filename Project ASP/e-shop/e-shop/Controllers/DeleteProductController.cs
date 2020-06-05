@@ -16,6 +16,12 @@ namespace e_shop.Controllers
             using (var context = new eshopContext())
             {
                 var itemToRemove = context.Products.SingleOrDefault(product => product.ProductId == ID); //returns a single item.
+                var removeFromReserved = context.Reserved.Where(product => product.ProductId == ID);
+
+                if (removeFromReserved != null)
+                {
+                    context.Reserved.RemoveRange(removeFromReserved);
+                }
 
                 if (itemToRemove != null)
                 {

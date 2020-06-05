@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using e_shop.Models;
 using e_shop.Models.DatabaseModels;
 using Microsoft.AspNetCore.Cors;
+using System.Text;
 
 namespace e_shop.Controllers
 {
@@ -19,7 +20,7 @@ namespace e_shop.Controllers
             using (var context = new eshopContext())
             {
                 var result = from user in context.Users
-                             where (user.EMail.Equals(content.eMail) && user.Password.Equals(content.password))
+                             where (user.EMail.Equals(content.eMail) && user.Password.Equals(CreateMD5(content.password)))
                              select new
                              {
                                  id = user.UserId,
@@ -44,6 +45,24 @@ namespace e_shop.Controllers
                              };
                 return Ok(result.ToList());
 
+            }
+        }
+
+        public static string CreateMD5(string input)
+        {
+            // Use input string to calculate MD5 hash
+            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            {
+                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                return sb.ToString();
             }
         }
     }

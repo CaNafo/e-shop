@@ -14,25 +14,18 @@ function AddProd(props) {
     const [amount, setAmount] = useState('');
     const [photo, setPhoto] = useState('');
     const [categorys, setCategorys] = useState([]);
+    const [categoryName, setategoryName] = useState([]);
 
     function onCancel() {
         window.location.reload();
     }
 
-
-    const onUpdate = async (e) => {
-        e.preventDefault();
-
-        var product = {
-            'tittle': tittle,
-            'description': description,
-            'price': price,
-            'amount': amount,
-            'category': document.getElementById('selectCategory').value,
-            'photo': photo
+    const onAddCategory = async () => {
+        var category = {
+            'categoryName': categoryName
         };
 
-        var link = Statics.getServerLink() + 'api/AddProduct';
+        var link = Statics.getServerLink() + 'api/AddCategory';
 
         await fetch(link, {
             method: 'POST',
@@ -44,15 +37,42 @@ function AddProd(props) {
                 'Access-Control-Allow-Credentials': 'true',
             },
             body: JSON.stringify(
-                product
+                category
             )
-        }).then(response => response.json()).then(response => refreshThePage(response));
+        }).then(window.location.reload());
     }
 
-    function refreshThePage(productId) {
-        localStorage.setItem('lastProduct', productId);
+    const onUpdate = async (e) => {
+        e.preventDefault();
 
-        window.location.reload();
+        if (tittle.length > 0 && description.length > 0 && price.length > 0 && amount.length > 0) {
+            var product = {
+                'tittle': tittle,
+                'description': description,
+                'price': price,
+                'amount': amount,
+                'category': document.getElementById('selectCategoryAdd').value,
+                'photo': photo
+            };
+
+            var link = Statics.getServerLink() + 'api/AddProduct';
+
+            await fetch(link, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:57703/',
+                    'Access-Control-Allow-Origin': 'http://localhost:3000/',
+                    'Access-Control-Allow-Credentials': 'true',
+                },
+                body: JSON.stringify(
+                    product
+                )
+            }).then(response => response.json()).then(response => alert('Successfully added product!') & window.location.reload());
+        }else{
+            alert('Please fill all fields!');
+        }
     }
 
     function showCategorys() {
@@ -103,6 +123,14 @@ function AddProd(props) {
 
     useEffect(() => {
         fetchCategorys();
+        Statics.setInputFilter(document.getElementById('addPrice'), function (value) {
+            return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+        });
+
+        Statics.setInputFilter(document.getElementById('addAmount'), function (value) {
+            return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+        });
+
     }, [])
 
     const fetchCategorys = async () => {
@@ -127,15 +155,18 @@ function AddProd(props) {
                                 showCategorys()
                             }
                         </select>
+                        <label id='newCategoryLabel' className='newCategory'>Add new category:</label>
+                        <input type='text' className='newCategory' onChange={event => setategoryName(event.target.value)}></input>
+                        <button className='btn btn-sm btn-warning' onClick={e => onAddCategory()}>Add</button>
                         <h4>Description:</h4>
-                        <textarea id='editDescription' onChange={event => setDescription(event.target.value)}></textarea><br/>
-                        <button id='btnUpdate' className='btn btn-info buttonsEdit' onClick={e=>onUpdate(e)} >Add</button>
+                        <textarea id='editDescription' onChange={event => setDescription(event.target.value)}></textarea><br />
+                        <button id='btnUpdate' className='btn btn-info buttonsEdit' onClick={e => onUpdate(e)} >Add</button>
                         <button id='btnCancel' className='btn btn-warning buttonsEdit' onClick={e => onCancel()} >Cancel</button>
                     </div>>
                         </div>
                 <div className='col-sm'>
                     <div>
-                       
+
 
                         <img id='editImg' src={EditPhoto} alt='Not found' onClick={e => openFileDialog()} />
                         <h4 id='addPriceTxt'  >Price:</h4>

@@ -17,7 +17,23 @@ namespace e_shop.Controllers
         {
             using (var context = new eshopContext())
             {
-                return context.Users.ToList();
+                var result = from user in context.Users
+                             select new
+                             {
+                                 userId = user.UserId,
+                                 eMail = user.EMail,
+                                 firstName = user.FirstName,
+                                 lastName = user.LastName,
+                                 birthDate = user.BirthDate,
+                                 roles = context.Roles.Select(role => new {
+                                     role.RoleId,
+                                     role.RoleName
+                                 }
+                                                             ).Where(
+                                                                     r => user.RoleList.Select(d => d.RoleId).Contains(r.RoleId)
+                                                                    ).ToList()
+                             };
+                return Ok(result.ToList());
             }
         }
 
