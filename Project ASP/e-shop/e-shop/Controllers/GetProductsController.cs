@@ -74,6 +74,25 @@ namespace e_shop.Controllers
 
                     return Ok(result.ToList());
                 }
+                else if (categoryId != -1 && priceFrom != -1 && priceTo != -1 && name == null && amount == -1)
+                {
+                    var result = from product in context.Products
+                                 where (
+                                        product.CategoryId == categoryId &
+                                        product.ProductPrice >= priceFrom && product.ProductPrice <= priceTo
+                                        )
+                                 select new
+                                 {
+                                     ID = product.ProductId,
+                                     categoryID = product.CategoryId,
+                                     tittle = product.ProductName,
+                                     price = product.ProductPrice,
+                                     amount = product.ProductAmount,
+                                     photo = product.ProductPhoto
+                                 };
+
+                    return Ok(result.ToList());
+                }
                 else if (categoryId == -1 && priceFrom != -1 && priceTo != -1 && name == null && amount == -1)
                 {
                     var result = from product in context.Products

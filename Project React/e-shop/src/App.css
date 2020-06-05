@@ -72,3 +72,18 @@
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+#cartNav{
+  border: solid 1px rebeccapurple;
+  border-radius: 100%;
+  width: 40px !important;
+}
+
+.custNavCart{
+  padding: 1px !important;
+  margin: 0 !important;
+}
+
+.navUser{
+  margin-right: 1% !important;
+}

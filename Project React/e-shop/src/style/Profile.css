@@ -48,3 +48,11 @@
 ul{
     list-style-type: square;
 }
+
+.editProfile{
+    margin: 0 auto !important;
+}
+
+.btnProfileEdit{
+    margin: 5px !important;
+}

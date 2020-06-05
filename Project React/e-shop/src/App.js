@@ -36,6 +36,7 @@ function App() {
         <Route path='/components/AddProd' exact component={IndexApp} />
         <Route path='/components/News' exact component={IndexApp} />
         <Route path='/components/UserManagment' exact component={IndexApp} />
+        <Route path='/components/CartPreview' exact component={IndexApp} />
       </Router>
     </div>
   );
