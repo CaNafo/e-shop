@@ -88,19 +88,23 @@ function News() {
     }
 
     function initNews(news) {
-        if (document.getElementById('pageNm') !== null && news.length>0) {
+        if (document.getElementById('pageNm') !== null && news.length > 0) {
             var lastNews = Object.keys(news).length - 1;
             setCurrentNews(lastNews + '');
-            document.getElementById('pageNm').innerHTML = Object.keys(news).length + '/' + Object.keys(news).length;
-            document.getElementById('newsTittle').innerHTML = news[lastNews].newsTittle;
-            document.getElementById('newsDescription').innerHTML = news[lastNews].newsDescription;
-            document.getElementById('newsBodytext').innerHTML = news[lastNews].newsBody;
+            if (news[lastNews] != undefined) {
+                document.getElementById('pageNm').innerHTML = Object.keys(news).length + '/' + Object.keys(news).length;
+                document.getElementById('newsTittle').innerHTML = news[lastNews].newsTittle;
+                document.getElementById('newsDescription').innerHTML = news[lastNews].newsDescription;
+                document.getElementById('newsBodytext').innerHTML = news[lastNews].newsBody;
+            }
         } else {
-            document.getElementById('newsTittle').innerHTML = 'Now news to show!';
-            document.getElementById('btnNext').style.display = "none";
-            document.getElementById('btnPerv').style.display = "none";
-            document.getElementById('btnMore').style.display = "none";
-            document.getElementById('btnLess').style.display = "none";
+            if (document.getElementById('newsTittle') !== null) {
+                document.getElementById('newsTittle').innerHTML = 'Now news to show!';
+                document.getElementById('btnNext').style.display = "none";
+                document.getElementById('btnPerv').style.display = "none";
+                document.getElementById('btnMore').style.display = "none";
+                document.getElementById('btnLess').style.display = "none";
+            }
         }
     }
 
