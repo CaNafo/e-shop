@@ -35,43 +35,45 @@ function Login() {
 
     return (
         <div className='App'>
-            <form>
-                <div className='Container'>
-                    <h3>Login</h3>
-                </div>
-
-                <div className='Container'>
-                    <p className='ContainerElementMargin'>or</p>
-                </div>
-
-                <div className='Container'>
-                    <Link to='/components/SignUp'>
-                        <p className='ContainerElementMargin loginSignUpLink'>Sign up</p>
-                    </Link>
-                </div>
-
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" onChange={event => setEmail(event.target.value)} value={eMail} />
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" onChange={event => setPass(event.target.value)} value={pass} />
-                </div>
-
-                <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" onClick={event => onCheck(event.target)} />
-                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+            <div className='loginDiv'>
+                <form className='loginForm'>
+                    <div className='Container'>
+                        <h3>Login</h3>
                     </div>
-                </div>
 
-                <button type="submit" className="btn btn-primary btn-block" onClick={event => LoginServices.fetchItems(event, history, eMail, pass)}>Submit</button>
-                <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
-                </p>
-            </form>
+                    <div className='Container'>
+                        <p className='ContainerElementMargin'>or</p>
+                    </div>
+
+                    <div className='Container'>
+                        <Link to='/components/SignUp'>
+                            <p className='ContainerElementMargin loginSignUpLink'>Sign up</p>
+                        </Link>
+                    </div>
+
+                    <div className="form-group">
+                        <label>Email address</label>
+                        <input type="email" className="form-control" placeholder="Enter email" onChange={event => setEmail(event.target.value)} value={eMail} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input type="password" className="form-control" placeholder="Enter password" onChange={event => setPass(event.target.value)} value={pass} />
+                    </div>
+
+                    <div className="form-group">
+                        <div className="custom-control custom-checkbox">
+                            <input type="checkbox" className="custom-control-input" id="customCheck1" onClick={event => onCheck(event.target)} />
+                            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" className="btn btn-primary btn-block" onClick={event => LoginServices.fetchItems(event, history, eMail, pass)}>Submit</button>
+                    <p className="forgot-password text-right">
+                         <a href="#">Forgot password?</a>
+                    </p>
+                </form>
+            </div>
         </div>
     );
 }

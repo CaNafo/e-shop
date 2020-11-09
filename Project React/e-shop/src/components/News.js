@@ -96,6 +96,9 @@ function News() {
                 document.getElementById('newsTittle').innerHTML = news[lastNews].newsTittle;
                 document.getElementById('newsDescription').innerHTML = news[lastNews].newsDescription;
                 document.getElementById('newsBodytext').innerHTML = news[lastNews].newsBody;
+                document.getElementById('btnNext').style.display = "inline-block";
+                document.getElementById('btnPerv').style.display = "inline-block";
+                document.getElementById('btnMore').style.display = "initial";
             }
         } else {
             if (document.getElementById('newsTittle') !== null) {
@@ -172,11 +175,11 @@ function News() {
                         <h1 id='newsTittle' className="jumbotron-heading"></h1>
                         <p id='newsDescription' className="lead text-muted"></p>
                         <p id='newsBodytext' style={{ display: "none" }} className="lead text-muted"></p>
-                        <a id='btnMore' href="#" className="btn btn-sm btn-primary" onClick={e => more()}>More..</a>
-                        <a id='btnLess' style={{ display: "none" }} href="#" className="btn btn-sm btn-primary" onClick={e => less()}>Less..</a>
+                        <a id='btnMore' href="#" className="btn btn-sm btn-primary" onClick={e => more()} style={{ display: "none" }}>More..</a>
+                        <a id='btnLess' style={{ display: "none" }} href="#" className="btn btn-sm btn-primary" onClick={e => less()} style={{ display: "none" }}>Less..</a>
                         <div id='divBtnNextPerv'>
-                            <a id='btnPerv' className="btn btn-primary" onClick={e => showPervNextNews(true)}>Previous</a>
-                            <a id='btnNext' className="btn btn-secondary" onClick={e => showPervNextNews(false)}>Next</a>
+                            <a id='btnPerv' className="btn btn-primary" onClick={e => showPervNextNews(true)} style={{ display: "none" }}>Previous</a>
+                            <a id='btnNext' className="btn btn-secondary" onClick={e => showPervNextNews(false)} style={{ display: "none" }}>Next</a>
                         </div>
                         <h6 id='pageNm'></h6>
                     </div>

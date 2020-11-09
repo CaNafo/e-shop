@@ -89,15 +89,16 @@ function Home() {
 
     function showProducts() {
         var elements = [];
+        var i = 0;
         if (products.length > 0) {
             for (var product of products) {
                 elements.push(
                     <ProductIndexPreview key={product.id}
-                        tittle={product.tittle}
-                        photo={product.photo}
-                        price={product.price}
-                        id={product.id}
-                        amount={product.amount}
+                    tittle={product.tittle}
+                    photo={product.photo}
+                    price={product.price}
+                    id={product.id}
+                    amount={product.amount}
                     />
                 );
             }

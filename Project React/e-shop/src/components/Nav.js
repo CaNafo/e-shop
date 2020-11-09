@@ -20,12 +20,12 @@ function Navigation() {
 
     return name;
   }
-
+ 
   return (
     <>
-      <Navbar variant="dark" expant='lg' className='navBackground'>
+      <Navbar variant="dark" expant='lg' className='navBackground navbar navbar-expand-lg navbar-dark bg-dark'>
         <Navbar.Brand as={Link} to="/components/news" className='custNav'>E-Shop</Navbar.Brand>
-        <Nav className="container"  >
+        <Nav className="container" id="navbarSupportedContent"> >
           <Nav.Item>
             <Nav>
               <Nav.Item>

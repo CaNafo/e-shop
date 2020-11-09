@@ -1,15 +1,13 @@
 .App {
   padding-left: 25%;
   padding-right: 25%;
-  padding-top: 2%;
-  background-image: url("./icons/wallpaper.jpg") !important;
   height: 100vh !important;
   background-size: 100%;
   background-repeat: no-repeat;
 }
 
 .AppContainer{
-  background-color: gainsboro;
+  background-image: url("./icons/wallpaper.jpg") !important;
 }
 
 .navBackground{
@@ -86,4 +84,8 @@
 
 .navUser{
   margin-right: 1% !important;
+}
+.signUpConrainer{
+  width: 50%;
+  padding-top: 10%;
 }

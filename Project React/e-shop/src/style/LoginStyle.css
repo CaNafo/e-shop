@@ -88,5 +88,20 @@
   }
   
   .forgot-password a {
-    color: white;
+    color: black;
+  }
+
+  .loginDiv{
+    width: 50%;    
+    padding-top: 15%;
+  }
+
+  .loginForm{
+    background-color:  rgba(34, 35, 58, 0.4);
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    border: 2px solid rgba(34, 35, 58, 0.2);
+    border-radius: 15px;
   }
