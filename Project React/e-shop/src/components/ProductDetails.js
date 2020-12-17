@@ -285,10 +285,20 @@ function ProductDetails(props) {
     }
 
     return (
-        <div className='container productContainer'>
-            {
-                showProduct()
-            }
+        <div>
+            <div className='tabDiv'>
+                <button className='btn btnProduct' id='btnProduct'>Product</button>
+                <button className='btn btnComment' id='btnComment'>Comments</button>
+            </div>
+            <div className='container productContainer' id='divProduct'>
+                {
+                    showProduct()
+                }
+            </div>
+            <div className='container productContainer' id='divComments'>
+              
+              
+            </div>
         </div>
     );
 }

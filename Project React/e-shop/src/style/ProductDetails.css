@@ -3,7 +3,6 @@
     background-size: 100%;
 }
 .productContainer{
-    margin-top: 7%;
     background: radial-gradient(rgba(153, 158, 153, 0.829), transparent);
     padding: 50px;
     height: 100vh !important;
@@ -81,4 +80,24 @@ h1{
 .newCategory{
     margin-right: 10px;
     margin-top: 10px;
+}
+
+.tabDiv{
+    margin-top: 10px;
+}
+.btnComment{
+    margin-left: 5px;
+    background-color: #41b577 !important;
+    color: white !important;
+}
+.btnComment:hover{
+    margin-left: 5px;
+    background-color: #56e398 !important;
+    color: white !important;
+}
+.btnProduct{
+    background-color: transparent !important;
+    color: black !important;
+    border-bottom: transparent !important;
+    border-color: rgba(153, 158, 153, 0.829)!important;
 }

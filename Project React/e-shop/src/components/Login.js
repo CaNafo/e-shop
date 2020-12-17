@@ -68,7 +68,7 @@ function Login() {
                         </div>
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-block" onClick={event => LoginServices.fetchItems(event, history, eMail, pass)}>Submit</button>
+                    <button type="submit" className="btn btn-primary btn-block" id="btnLoginSubmit" onClick={event => LoginServices.fetchItems(event, history, eMail, pass)}>Submit</button>
                     <p className="forgot-password text-right">
                          <a href="#">Forgot password?</a>
                     </p>

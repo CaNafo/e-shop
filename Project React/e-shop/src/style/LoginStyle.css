@@ -105,3 +105,8 @@
     border: 2px solid rgba(34, 35, 58, 0.2);
     border-radius: 15px;
   }
+
+  #btnLoginSubmit{
+    width: 50%;
+    margin-left: 25%;
+  }
