@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Static from '../services/Static'
 import '../style/Home.css'
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import Home from '../components/Home'
 
 export default class ProductIndexPreview extends Component {
 
@@ -9,10 +12,41 @@ export default class ProductIndexPreview extends Component {
 
         const deleteProduct = async (e, id) => {
             var link = Static.getServerLink() + 'api/DeleteProduct?ID=' + id;
-            await fetch(link);
+            
+            Swal.fire({
+                title: 'Do you want to delete this product?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Delete`,
+                denyButtonText: `Don't delete`,
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                deleteConfirmed(link);
+                Swal.fire('Deleted!', '', 'success')
+                setTimeout(() => {e.preventDefault();
+                    window.location.reload();
+                 }, 1500);
+                } else if (result.isDenied) {
+                  Swal.fire('Product is not deleted', '', 'info')
+                }
+              })
 
-            e.preventDefault();
-            window.location.reload();
+        }
+
+        const deleteConfirmed = async(link)=>{
+            await fetch(link);
+        }
+
+        function deleteProductAlert(){
+            const MySwal = withReactContent(Swal)
+
+            MySwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href>Why do I have this issue?</a>'
+              })
         }
 
         function redirectToDetails(id) {

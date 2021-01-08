@@ -157,7 +157,7 @@ function Home() {
                                 </div>
                             </div>
 
-                            <select id='selectCategory' className="form-control placeholder">
+                            <select id='selectCategory' onChange={e => fetchProducts()} className="form-control placeholder">
                                 <option value="">Select category</option>
                                 {
                                     showCategorys()
@@ -166,7 +166,7 @@ function Home() {
                             <button id='refreshBtn' className='btn btn-success' onClick={e => fetchProducts()}>Refresh</button>
                         </div>
                     </div>
-                    <div className='col-sm-8'>
+                    <div className='col-sm-9'>
                         <div>
                             <input id='search' type="text" name="search" placeholder="Search.." onChange={e => fetchProductsByName(e.target.value)} /><br />
                             {

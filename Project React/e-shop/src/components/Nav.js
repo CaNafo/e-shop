@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, Button, NavDropdown } from 'react-bootstrap';
 import NavServices from '../services/NavService'
 import { Link, useHistory } from 'react-router-dom';
 import Static from '../services/Static'
@@ -23,40 +23,42 @@ function Navigation() {
  
   return (
     <>
-      <Navbar variant="dark" expant='lg' className='navBackground navbar navbar-expand-lg navbar-dark bg-dark'>
-        <Navbar.Brand as={Link} to="/components/news" className='custNav'>E-Shop</Navbar.Brand>
-        <Nav className="container" id="navbarSupportedContent">
-          <Nav.Item>
-            <Nav>
-              <Nav.Item>
-                <Nav.Link className='navItem' as={Link} to="/components/news">News</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link className='navItem' as={Link} to="/components/home">Products</Nav.Link>
-              </Nav.Item>
-              {
-                Static.checkPermision(
-                  'UserManagment',
-                  <Nav.Item>
-                    <Nav.Link className='navItem' as={Link} to="/components/UserManagment">User Managment</Nav.Link>
-                  </Nav.Item>
-                )
-              }
-            </Nav>
-          </Nav.Item>
-          <Nav.Item className='navUser'>
-            <Navbar.Text className='mr-sm-1 navbarText'>Logged in as</Navbar.Text>
-            <Link to="/components/profile"><Button variant='outline-light' className='mr-sm-2 btn-sm'>{getName()}</Button></Link>
-            <Button variant="outline-warning btn-sm" onClick={event => NavServices.logout(history)}>Log out</Button>
-          </Nav.Item>
+      <Navbar collapseOnSelect expand="lg"  className='navBackground' variant="dark">
+      <Navbar.Brand href="#home">E-Shop</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link as={Link} to="/components/news">News</Nav.Link>
+          <Nav.Link as={Link} to="/components/home">Products</Nav.Link>
           {
             Static.checkPermision(
-              'AddToCart',
-              <Navbar.Brand as={Link} to="/components/CartPreview" className='custNavCart'><img id='cartNav' src={Cart}></img></Navbar.Brand>
-              )
+              'UserManagment',
+              <>
+                <NavDropdown title="Admin Controls" id="collasible-nav-dropdown">
+                <NavDropdown.Item as={Link} to="/components/UserManagment">Users</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Orders</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/components/CartPreview">My Cart</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Reserved products</NavDropdown.Item>
+              </NavDropdown>
+              </>
+            )
           }
+          {
+            Static.dontHavePermision(
+              'UserManagment',
+              <>
+              <Nav.Link as={Link} to="/components/CartPreview">My Cart</Nav.Link>
+              </>
+            )
+          }
+            </Nav>
+        <Nav>
+          <Nav.Link as={Link} to="/components/profile">Hello, {getName()}</Nav.Link>
+          <Nav.Link eventKey={2} onClick={event => NavServices.logout(history)}>Log out</Nav.Link>
         </Nav>
-      </Navbar>
+  </Navbar.Collapse>
+</Navbar>
     </>
   );
 }

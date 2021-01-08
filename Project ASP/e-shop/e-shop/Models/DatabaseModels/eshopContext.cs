@@ -17,6 +17,7 @@ namespace e_shop.Models.DatabaseModels
 
         public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Comment> Comment { get; set; }
         public virtual DbSet<Logs> Logs { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
@@ -27,6 +28,8 @@ namespace e_shop.Models.DatabaseModels
         public virtual DbSet<RoleList> RoleList { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+
+        // Unable to generate entity type for table 'dbo.PRODUCT_RATING'. Please see the warning messages.
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -80,6 +83,47 @@ namespace e_shop.Models.DatabaseModels
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Comment>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.CategoryId, e.ProductId, e.CommentId });
+
+                entity.ToTable("COMMENT");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("IS_COMMENTING_FK");
+
+                entity.HasIndex(e => new { e.CategoryId, e.ProductId })
+                    .HasName("HAS_COMMENT_FK");
+
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
+
+                entity.Property(e => e.CategoryId).HasColumnName("CATEGORY_ID");
+
+                entity.Property(e => e.ProductId).HasColumnName("PRODUCT_ID");
+
+                entity.Property(e => e.CommentId)
+                    .HasColumnName("COMMENT_ID")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.CommentText)
+                    .IsRequired()
+                    .HasColumnName("COMMENT_TEXT")
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Comment)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COMMENT_IS_COMMEN_USERS");
+
+                entity.HasOne(d => d.Products)
+                    .WithMany(p => p.Comment)
+                    .HasForeignKey(d => new { d.CategoryId, d.ProductId })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COMMENT_HAS_COMME_PRODUCTS");
+            });
+
             modelBuilder.Entity<Logs>(entity =>
             {
                 entity.HasKey(e => e.LogId);
@@ -121,10 +165,7 @@ namespace e_shop.Models.DatabaseModels
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NewsPhoto)
-                    .HasColumnName("NEWS_PHOTO")
-                    .HasMaxLength(8000)
-                    .IsUnicode(false);
+                entity.Property(e => e.NewsPhoto).HasColumnName("NEWS_PHOTO");
 
                 entity.Property(e => e.NewsTittle)
                     .IsRequired()
@@ -234,10 +275,7 @@ namespace e_shop.Models.DatabaseModels
 
                 entity.Property(e => e.ProductAmount).HasColumnName("PRODUCT_AMOUNT");
 
-                entity.Property(e => e.ProductDescription)
-                    .HasColumnName("PRODUCT_DESCRIPTION")
-                    .HasMaxLength(2000)
-                    .IsUnicode(false);
+                entity.Property(e => e.ProductDescription).HasColumnName("PRODUCT_DESCRIPTION");
 
                 entity.Property(e => e.ProductExpireDate)
                     .HasColumnName("PRODUCT_EXPIRE_DATE")
@@ -249,14 +287,11 @@ namespace e_shop.Models.DatabaseModels
                     .HasMaxLength(128)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ProductPhoto)
-                    .HasColumnName("PRODUCT_PHOTO")
-                    .HasMaxLength(8000)
-                    .IsUnicode(false);
+                entity.Property(e => e.ProductPhoto).HasColumnName("PRODUCT_PHOTO");
 
                 entity.Property(e => e.ProductPrice)
                     .HasColumnName("PRODUCT_PRICE")
-                    .HasColumnType("decimal(18, 0)");
+                    .HasColumnType("decimal(10, 3)");
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Products)

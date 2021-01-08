@@ -1,11 +1,8 @@
-.indexContainer{
-    background-image: url("../icons/wallpaper.jpg") !important;
-    background-size: 100%;
-}
+
 .productContainer{
     background: radial-gradient(rgba(153, 158, 153, 0.829), transparent);
     padding: 50px;
-    height: 100vh !important;
+    height: 90vh;
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 2s; /* Firefox < 16 */
      -ms-animation: fadein 2s; /* Internet Explorer */

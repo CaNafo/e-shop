@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import '../style/ProductDetails.css';
 import EditPhoto from '../icons/addphoto.png';
 import Statics from '../services/Static';
+import '../style/Spinner.css';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function ProductDetails(props) {
 
@@ -21,6 +24,15 @@ function ProductDetails(props) {
         window.location.reload();
     }
 
+
+    function hideLoader(){
+        try{
+            document.getElementById('newsLoader').style.display = 'none';
+        }catch (e){
+            
+        }
+    }
+
     function checkIfProductIsAvaliable(block) {
         if (product !== null) {
             if (product[0].amount > 0) {
@@ -32,6 +44,7 @@ function ProductDetails(props) {
             }
         }
     }
+
     function showProductAmount() {
         if (product !== null) {
             var elements = [];
@@ -139,15 +152,43 @@ function ProductDetails(props) {
     }
 
     const addToCart = async () => {
+        
         if (document.getElementById('selectAmount').selectedIndex !== 0) {
             var link = Statics.getServerLink() + 'api/AddToCart?ID=' + Statics.getUser().id + '&prodID=' + productId + '&amount=' + parseInt(document.getElementById('selectAmount').value);
 
+            Swal.fire({
+                icon: 'info',
+                title: 'Confirmation',
+                text: 'Do you want to add to cart a choosen amount of this product?',
+                showCancelButton: true,
+                confirmButtonText: `Add to cart`,
+                cancelButtonText: `Don\'t add`,
+
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('Successfully added!', '', 'success').then(()=>{
+                        addProduct(link);
+                    })
+                }
+              })
+            /*
             await fetch(link).then(
                 window.location.reload()
-            );
+            );*/
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please choose amount you want to order!',
+              })
         }
     }
-
+  const addProduct = async(link) => {
+        await fetch(link).then(
+                window.location.reload()
+            );
+    }
 
     function openFileDialog(accept, callback) {
 
@@ -185,6 +226,7 @@ function ProductDetails(props) {
 
     function showProduct() {
         if (product !== undefined) {
+            hideLoader();
             return (
                 <>
                     <div className='row'>
@@ -285,7 +327,7 @@ function ProductDetails(props) {
     }
 
     return (
-        <div>
+        <div>    
             <div className='tabDiv'>
                 <button className='btn btnProduct' id='btnProduct'>Product</button>
                 <button className='btn btnComment' id='btnComment'>Comments</button>
@@ -294,10 +336,7 @@ function ProductDetails(props) {
                 {
                     showProduct()
                 }
-            </div>
-            <div className='container productContainer' id='divComments'>
-              
-              
+                <div className="loader" id='newsLoader'>Loading...</div>
             </div>
         </div>
     );

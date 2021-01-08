@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../style/News.css';
+import '../style/Spinner.css';
 import Static from '../services/Static';
 
 function News() {
@@ -69,7 +70,7 @@ function News() {
         var link = Static.getServerLink() + 'api/GetNews';
 
         await fetch(link).then(response => response.json()).then(
-            response => setNews(response) & initNews(response)
+            response => setNews(response) & initNews(response) & hideLoader()
         );
 
     }
@@ -80,6 +81,14 @@ function News() {
         await fetch(link).then(response => response.json()).then(
             response => showVisits(response)
         );
+    }
+
+    function hideLoader(){
+        try{
+            document.getElementById('newsLoader').style.display = 'none';
+        }catch (e){
+            
+        }
     }
 
     function showVisits(visits) {
@@ -153,6 +162,7 @@ function News() {
 
     return (
         <div className='NewsDiv'>
+            <div className="loader" id='newsLoader'>Loading...</div>
             <div className='News'>
                 <div>
                     <div className="container">

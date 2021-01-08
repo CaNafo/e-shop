@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import '../style/ProductDetails.css';
 import EditPhoto from '../icons/addphoto.png';
 import Statics from '../services/Static';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { Route, useHistory } from 'react-router-dom';
 
 function AddProd(props) {
 
     var props = props.location.productProps;
     var id;
+    let history = useHistory();
 
     const [tittle, setTittle] = useState('');
     const [description, setDescription] = useState('');
@@ -69,9 +73,32 @@ function AddProd(props) {
                 body: JSON.stringify(
                     product
                 )
-            }).then(response => response.json()).then(response => alert('Successfully added product!') & window.location.reload());
+            }).then(response => response.json()).then(response => 
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Well done',
+                    text: 'Successfully added a product!',
+                    showCancelButton: true,
+                    confirmButtonText: `Go back`,
+                    cancelButtonText: `Add more`,
+    
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        history.push('/components/home');
+                    }else{
+                        window.location.reload()
+                    }
+                  })
+                );
         }else{
-            alert('Please fill all fields!');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill all fields!',
+              })
+
+              
         }
     }
 
@@ -162,7 +189,7 @@ function AddProd(props) {
                         <textarea id='editDescription' onChange={event => setDescription(event.target.value)}></textarea><br />
                         <button id='btnUpdate' className='btn btn-info buttonsEdit' onClick={e => onUpdate(e)} >Add</button>
                         <button id='btnCancel' className='btn btn-warning buttonsEdit' onClick={e => onCancel()} >Cancel</button>
-                    </div>>
+                    </div>
                         </div>
                 <div className='col-sm'>
                     <div>

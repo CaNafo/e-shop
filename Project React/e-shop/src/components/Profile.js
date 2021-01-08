@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../style/Profile.css';
 import Static from '../services/Static'
 import ProfileImg from '../icons/profile.png';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function Profile() {
 
@@ -74,26 +76,48 @@ function Profile() {
 
       var link = Static.getServerLink() + 'api/EditUser';
 
-      await fetch(link, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:57703/',
-          'Access-Control-Allow-Origin': 'http://localhost:3000/',
-          'Access-Control-Allow-Credentials': 'true',
-        },
-        body: JSON.stringify(
-          user
-        )
-      }).then(
-        alert('Changes will be aplied on next login!') &
-        window.location.reload()
-      );
+      Swal.fire({
+        icon: 'info',
+        title: 'Confirmation',
+        text: 'Do you want to apply this changes?',
+        showCancelButton: true,
+        confirmButtonText: `Save changes`,
+        cancelButtonText: `Don\'t save`,
+
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            Swal.fire('Changes will be aplied on next login!', '', 'success').then(()=>{
+                applyChanges(link, user);
+            })
+        }
+      })
     }
     else
-      alert('Please fill all fields!');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill all fields!',
+      })
   }
+
+  const applyChanges = async(link, user)=>{
+    await fetch(link, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:57703/',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/',
+        'Access-Control-Allow-Credentials': 'true',
+      },
+      body: JSON.stringify(
+        user
+      )
+    }).then(
+      window.location.reload()
+    );
+  };
 
   return (
     <div >
@@ -137,9 +161,7 @@ function Profile() {
               <h2 id='name'>{firstName} {lastName}</h2>
               <h4 id='bday'>{birthDate}</h4>
               <h4 id='email'>E-mail: {eMail}</h4>
-            </div>
-          </div>
-          <br></br>
+            </div><br/>
           <div className='rolesStyle' id='roles'>
             <div>
               <h3>Roles</h3>
@@ -150,6 +172,8 @@ function Profile() {
           </div>
           <br />
           <button id='btnEdit' className='btn btn btn-warning' onClick={e => onEdit()}>Edit</button>
+          <br></br>
+          </div>
         </div>
       </div>
     </div>

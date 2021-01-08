@@ -8,6 +8,7 @@ namespace e_shop.Models.DatabaseModels
         public Users()
         {
             Cart = new HashSet<Cart>();
+            Comment = new HashSet<Comment>();
             News = new HashSet<News>();
             RoleList = new HashSet<RoleList>();
         }
@@ -20,6 +21,7 @@ namespace e_shop.Models.DatabaseModels
         public string Password { get; set; }
 
         public virtual ICollection<Cart> Cart { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
         public virtual ICollection<News> News { get; set; }
         public virtual ICollection<RoleList> RoleList { get; set; }
     }

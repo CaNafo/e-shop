@@ -7,6 +7,7 @@ namespace e_shop.Models.DatabaseModels
     {
         public Products()
         {
+            Comment = new HashSet<Comment>();
             Reserved = new HashSet<Reserved>();
         }
 
@@ -20,6 +21,7 @@ namespace e_shop.Models.DatabaseModels
         public int ProductAmount { get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
         public virtual ICollection<Reserved> Reserved { get; set; }
     }
 }

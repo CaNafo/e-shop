@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import IndexApp from './IndexApp';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
@@ -25,18 +25,20 @@ function App() {
           )
         }
         <div id='alertBlock'></div>
-        <Route path='/components/Login' exact component={Login} />
-        <Route path='/components/SignUp' exact component={SignUp} />
-        <Route path='/' exact component={Login} />
+        <Switch>
+          <Route path='/components/Login' exact component={Login} />
+          <Route path='/components/SignUp' exact component={SignUp} />
+          <Route path='/' exact component={Login} />
 
-        <Route path='/IndexApp' exact component={IndexApp} />
-        <Route path='/components/profile' exact component={IndexApp} />
-        <Route path='/components/home' exact component={IndexApp} />
-        <Route path='/components/ProductDetails' exact component={IndexApp} />
-        <Route path='/components/AddProd' exact component={IndexApp} />
-        <Route path='/components/News' exact component={IndexApp} />
-        <Route path='/components/UserManagment' exact component={IndexApp} />
-        <Route path='/components/CartPreview' exact component={IndexApp} />
+          <Route path='/IndexApp' exact component={IndexApp} />
+          <Route path='/components/profile' exact component={IndexApp} />
+          <Route path='/components/home' exact component={IndexApp} />
+          <Route path='/components/ProductDetails' exact component={IndexApp} />
+          <Route path='/components/AddProd' exact component={IndexApp} />
+          <Route path='/components/News' exact component={IndexApp} />
+          <Route path='/components/UserManagment' exact component={IndexApp} />
+          <Route path='/components/CartPreview' exact component={IndexApp} />
+        </Switch>
       </Router>
     </div>
   );

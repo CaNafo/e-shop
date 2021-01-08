@@ -9,12 +9,16 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "cors": "^2.8.5",
+    "mdbreact": "^5.0.1",
     "react": "^16.13.1",
     "react-axios": "^2.0.3",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^10.13.0",
+    "sweetalert2-react-content": "^3.2.2"
   },
   "scripts": {
     "start": "react-scripts start",

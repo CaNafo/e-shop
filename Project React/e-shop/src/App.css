@@ -7,13 +7,11 @@
 }
 
 .AppContainer{
-  background-image: url("./icons/wallpaper.jpg") !important;
+  background-color: rgba(252,200,201,0.5);
 }
 
 .navBackground{
-  background-color: #2196f3;
-  border-bottom: solid 1px  rgb(109, 101, 101);
-  padding: 1px !important;
+  background-color: #7F7C95 !important;
 }
 
 .navItem{
@@ -87,5 +85,7 @@
 }
 .signUpConrainer{
   width: 50%;
-  padding-top: 10%;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  height: 96vh !important;
 }
