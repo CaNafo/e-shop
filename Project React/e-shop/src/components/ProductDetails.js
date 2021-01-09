@@ -3,6 +3,7 @@ import '../style/ProductDetails.css';
 import EditPhoto from '../icons/addphoto.png';
 import Statics from '../services/Static';
 import '../style/Spinner.css';
+import ProfileImg from '../icons/profile.png';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
@@ -326,17 +327,70 @@ function ProductDetails(props) {
             );
     }
 
+    function showComments(){
+        document.getElementById('divProduct').style.display = 'none';
+        document.getElementById('divComments').style.display = 'block';
+
+        document.getElementById('btnProduct').classList.add('btnProductNotActive');
+        document.getElementById('btnProduct').classList.remove('btnProduct');
+        document.getElementById('btnComment').classList.add('btnCommentActive');
+        document.getElementById('btnComment').classList.remove('btnComment');
+    }
+
+    function hideComments(){
+        document.getElementById('divProduct').style.display = 'block';
+        document.getElementById('divComments').style.display = 'none';
+        document.getElementById('btnProduct').classList.remove('btnProductNotActive');
+        document.getElementById('btnProduct').classList.add('btnProduct');
+        document.getElementById('btnComment').classList.remove('btnCommentActive');
+        document.getElementById('btnComment').classList.add('btnComment');
+    }
+
     return (
         <div>    
             <div className='tabDiv'>
-                <button className='btn btnProduct' id='btnProduct'>Product</button>
-                <button className='btn btnComment' id='btnComment'>Comments</button>
+                <button className='btn btnProduct' id='btnProduct' onClick={e=>hideComments()}>Product</button>
+                <button className='btn btnComment' id='btnComment' onClick={e=>showComments()}>Comments</button>
             </div>
             <div className='container productContainer' id='divProduct'>
                 {
                     showProduct()
                 }
                 <div className="loader" id='newsLoader'>Loading...</div>
+            </div>
+            <div className='container commentsContainer' id='divComments'>
+                {
+                    //getComments()
+                }
+            <div className='comments_body'>
+                <div className="comment_container">
+                <img src={ProfileImg} alt="Avatar" style={{width:100+"%"}}/>
+                <p className='comment_name_left'>Marko Markovic</p>
+                <p className='left'>Hello. How are you today?</p>
+                </div>
+
+                <div className="comment_container darker">
+                <img src={ProfileImg} alt="Avatar" className="right" style={{width:100+"%"}}/>
+                <p className='comment_name_right'>Marko Markovic</p>
+                <p className="right">Hey! I'm fine. Thanks for asking!</p>
+                </div>
+                
+                <div className="comment_container">
+                <img src={ProfileImg} alt="Avatar" style={{width:100+"%"}}/>
+                <p className='comment_name_left'>Marko Markovic</p>
+                <p className='left'>Hello. How are you today?</p>
+                </div>
+
+                <div className="comment_container darker">
+                <img src={ProfileImg} alt="Avatar" className="right" style={{width:100+"%"}}/>
+                <p className='comment_name_right'>Marko Markovic</p>
+                <p className="right">Hey! I'm fine. Thanks for asking!</p>
+                </div>
+            </div>
+            <div>
+                <textarea name="styled-textarea" placeholder='Enter your comment here...' id="styled" onfocus="this.value=''; setbg('#e5fff3');" onblur="setbg('white')"></textarea>
+                <button className='btn btn-primary btn_post_comment'>Post</button> 
+            </div>                
             </div>
         </div>
     );
