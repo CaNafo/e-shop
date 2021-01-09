@@ -80,7 +80,20 @@ function UserManagment() {
             for (var user of users) {
                 if (user.userId != Static.getUser().id)
                     elements.push(
-                        <div className='userDiv' key={user.userId}>
+                        <tr>
+                            <td>{user.firstName} {user.lastName}</td>
+                            <td>{user.eMail}</td>
+                            <td>
+                                {
+                                    checkIfBanned(user)
+                                }
+                            </td>
+                            <td><button value={user.userId} className='btn btn-sm btn-warning UserManagmentBtn'
+                                    onClick={e => deleteUser(e.target.value)}>
+                                    Delete
+                            </button></td>
+                        </tr>
+                        /*<div className='userDiv' key={user.userId}>
                             <div>
                                 <h5>{user.firstName} {user.lastName}</h5>
                                 <img className='UserManagmentImg' src={ProfileImg}></img>
@@ -93,15 +106,15 @@ function UserManagment() {
                                     Delete
                             </button>
                             </div>
-                        </div>
+                        </div>*/
                     );
             }
             return (
-                <div id='productRow' className='row' >
+                <>
                     {
                         elements
                     }
-                </div>
+                </>
             );
         }
     }
@@ -128,9 +141,17 @@ function UserManagment() {
         <div className='UserManagmentContainer'>
             <div>
                 <h2>Users</h2>
-                {
-                    showAllUsers()
-                }
+                <table id="usersTable">
+                    <tr>
+                        <th>Name and surname</th>
+                        <th>E-mail</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {
+                        showAllUsers()
+                    }
+                </table>
             </div>
         </div>
     );

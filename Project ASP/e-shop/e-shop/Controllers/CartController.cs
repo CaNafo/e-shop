@@ -25,6 +25,7 @@ namespace e_shop.Controllers
                                  reservedID = reserved.ReservedId,
                                  productID = reserved.ProductId,
                                  amount = reserved.ReservedAmount,
+                                 ordered = reserved.ReservedOrdered,
                                  tittle = context.Products.FirstOrDefault(prod => prod.ProductId == reserved.ProductId).ProductName,
                                  photo = context.Products.FirstOrDefault(prod => prod.ProductId == reserved.ProductId).ProductPhoto,
                                  price = (context.Products.FirstOrDefault(prod => prod.ProductId == reserved.ProductId).ProductPrice*reserved.ReservedAmount)

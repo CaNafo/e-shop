@@ -10,19 +10,29 @@ import ProductDetails from './components/ProductDetails'
 import Static from './services/Static'
 import AddProd from './components/AddProd';
 import CartPreview from './components/CartPreview';
+import OrdersPreview from './components/OrdersPreview';
+import ReservedPreview from './components/ReservedPreview';
 
 function IndexApp() {
 
   let history = useHistory();
 
   function checkSession() {
-    if (sessionStorage.getItem('name') == null)
+    if (sessionStorage.getItem('name') == null && sessionStorage.getItem('guest') == null)
       history.push('/');
-    else if (!Static.checkForRoles()) {
+    else if(sessionStorage.getItem('guest') != 'null'){
+      return (
+        <div className='indexContainer'>
+          <Nav />
+          <Route path='/components/home' exact component={Home} />
+          <Route path='/components/ProductDetails' exact component={ProductDetails} />
+        </div>
+      );
+    }else if (!Static.checkForRoles()) {
       sessionStorage.clear();
       Static.setCookie('banAlert', '1', 1);
       history.push('/');
-    } else {
+    } else if(sessionStorage.getItem('name') != null){
       return (
         <div className='indexContainer'>
           <Nav />
@@ -34,6 +44,8 @@ function IndexApp() {
           <Route path='/components/UserManagment' exact component={UserManagment} />
           <Route path='/components/AddProd' exact component={AddProd} />
           <Route path='/components/CartPreview' exact component={CartPreview} />
+          <Route path='/components/OrdersPreview' exact component={OrdersPreview} />
+          <Route path='/components/ReservedPreview' exact component={ReservedPreview} />
         </div>
       );
     }

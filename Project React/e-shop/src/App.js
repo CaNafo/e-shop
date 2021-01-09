@@ -38,6 +38,8 @@ function App() {
           <Route path='/components/News' exact component={IndexApp} />
           <Route path='/components/UserManagment' exact component={IndexApp} />
           <Route path='/components/CartPreview' exact component={IndexApp} />
+          <Route path='/components/OrdersPreview' exact component={IndexApp} />
+          <Route path='/components/ReservedPreview' exact component={IndexApp} />
         </Switch>
       </Router>
     </div>

@@ -23,13 +23,12 @@ namespace e_shop.Models.DatabaseModels
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<PermissionList> PermissionList { get; set; }
         public virtual DbSet<Permissions> Permissions { get; set; }
+        public virtual DbSet<ProductRating> ProductRating { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Reserved> Reserved { get; set; }
         public virtual DbSet<RoleList> RoleList { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-
-        // Unable to generate entity type for table 'dbo.PRODUCT_RATING'. Please see the warning messages.
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -203,9 +202,26 @@ namespace e_shop.Models.DatabaseModels
                     .HasColumnName("ORDER_ID")
                     .ValueGeneratedOnAdd();
 
+                entity.Property(e => e.OrderAdress)
+                    .IsRequired()
+                    .HasColumnName("ORDER_ADRESS")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.OrderDate)
                     .HasColumnName("ORDER_DATE")
                     .HasColumnType("datetime");
+
+                entity.Property(e => e.OrderEmail)
+                    .HasColumnName("ORDER_EMAIL")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.OrderPhoneNumber)
+                    .IsRequired()
+                    .HasColumnName("ORDER_PHONE_NUMBER")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Reserved)
                     .WithMany(p => p.Orders)
@@ -256,6 +272,37 @@ namespace e_shop.Models.DatabaseModels
                     .HasColumnName("PERMISSION_NAME")
                     .HasMaxLength(128)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ProductRating>(entity =>
+            {
+                entity.ToTable("PRODUCT_RATING");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("RATED_PRODUCT_FK");
+
+                entity.HasIndex(e => new { e.CategoryId, e.ProductId })
+                    .HasName("HAS_RATING_FK");
+
+                entity.Property(e => e.ProductRatingId).HasColumnName("PRODUCT_RATING_ID");
+
+                entity.Property(e => e.CategoryId).HasColumnName("CATEGORY_ID");
+
+                entity.Property(e => e.ProductId).HasColumnName("PRODUCT_ID");
+
+                entity.Property(e => e.Rating).HasColumnName("RATING");
+
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.ProductRating)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_PRODUCT__RATED_PRO_USERS");
+
+                entity.HasOne(d => d.Products)
+                    .WithMany(p => p.ProductRating)
+                    .HasForeignKey(d => new { d.CategoryId, d.ProductId })
+                    .HasConstraintName("FK_PRODUCT__HAS_RATIN_PRODUCTS");
             });
 
             modelBuilder.Entity<Products>(entity =>

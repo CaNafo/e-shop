@@ -18,6 +18,7 @@ function Login() {
         if (sessionStorage.getItem('name') !== null) {
             history.push('/IndexApp');
         } else {
+            sessionStorage.setItem('guest', 'null');
             if (localStorage.getItem("eMail") !== null && localStorage.getItem("pass") !== "") {
                 setEmail(localStorage.getItem("eMail"));
                 setPass(localStorage.getItem("pass"));
@@ -31,6 +32,11 @@ function Login() {
             localStorage.setItem("eMail", eMail);
             localStorage.setItem("pass", pass);
         }
+    }
+
+    function loginAsGuest(){
+        sessionStorage.setItem('guest','guest');
+        history.push('/components/home');
     }
 
     return (
@@ -68,7 +74,8 @@ function Login() {
                         </div>
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-block" id="btnLoginSubmit" onClick={event => LoginServices.fetchItems(event, history, eMail, pass)}>Submit</button>
+                    <button type="submit" className="btn btn-primary btn-block" id="btnLoginSubmit" onClick={event => LoginServices.fetchItems(event, history, eMail, pass)}>Login</button>
+                    <button type="submit" className="btn btn-primary btn-block" id="btnLoginAsGuest" onClick={event => loginAsGuest()}>Login as Guest</button>
                     <p className="forgot-password text-right">
                          <a href="#">Forgot password?</a>
                     </p>

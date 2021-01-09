@@ -10,6 +10,7 @@ namespace e_shop.Models.DatabaseModels
             Cart = new HashSet<Cart>();
             Comment = new HashSet<Comment>();
             News = new HashSet<News>();
+            ProductRating = new HashSet<ProductRating>();
             RoleList = new HashSet<RoleList>();
         }
 
@@ -23,6 +24,7 @@ namespace e_shop.Models.DatabaseModels
         public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<Comment> Comment { get; set; }
         public virtual ICollection<News> News { get; set; }
+        public virtual ICollection<ProductRating> ProductRating { get; set; }
         public virtual ICollection<RoleList> RoleList { get; set; }
     }
 }

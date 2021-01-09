@@ -21,44 +21,63 @@ function Navigation() {
     return name;
   }
  
+  function checkIfGuest(){
+    if(sessionStorage.getItem('guest') == 'null'){
+      return(
+        <>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link as={Link} to="/components/news">News</Nav.Link>
+            <Nav.Link as={Link} to="/components/home">Products</Nav.Link>
+            {
+              Static.checkPermision(
+                'UserManagment',
+                <>
+                  <NavDropdown title="Admin Controls" id="collasible-nav-dropdown">
+                  <NavDropdown.Item as={Link} to="/components/UserManagment">Users</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/components/OrdersPreview">Orders</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/components/CartPreview">My Cart</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item as={Link} to="/components/ReservedPreview">Reserved products</NavDropdown.Item>
+                </NavDropdown>
+                </>
+              )
+            }
+            {
+              Static.dontHavePermision(
+                'UserManagment',
+                <>
+                <Nav.Link as={Link} to="/components/CartPreview">My Cart</Nav.Link>
+                </>
+              )
+            }
+              </Nav>
+          <Nav>
+            <Nav.Link as={Link} to="/components/profile">Hello, {getName()}</Nav.Link>
+            <Nav.Link eventKey={2} onClick={event => NavServices.logout(history)}>Log out</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+        </>
+      );
+    }else{
+      return(
+        <>
+        <Nav>
+          <Nav.Link eventKey={2} onClick={event => NavServices.logout(history)}>Log in</Nav.Link>
+        </Nav>
+        </>
+      );
+    }
+  }
   return (
     <>
       <Navbar collapseOnSelect expand="lg"  className='navBackground' variant="dark">
       <Navbar.Brand href="#home">E-Shop</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/components/news">News</Nav.Link>
-          <Nav.Link as={Link} to="/components/home">Products</Nav.Link>
-          {
-            Static.checkPermision(
-              'UserManagment',
-              <>
-                <NavDropdown title="Admin Controls" id="collasible-nav-dropdown">
-                <NavDropdown.Item as={Link} to="/components/UserManagment">Users</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Orders</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/components/CartPreview">My Cart</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Reserved products</NavDropdown.Item>
-              </NavDropdown>
-              </>
-            )
-          }
-          {
-            Static.dontHavePermision(
-              'UserManagment',
-              <>
-              <Nav.Link as={Link} to="/components/CartPreview">My Cart</Nav.Link>
-              </>
-            )
-          }
-            </Nav>
-        <Nav>
-          <Nav.Link as={Link} to="/components/profile">Hello, {getName()}</Nav.Link>
-          <Nav.Link eventKey={2} onClick={event => NavServices.logout(history)}>Log out</Nav.Link>
-        </Nav>
-  </Navbar.Collapse>
-</Navbar>
+      {
+        checkIfGuest()
+      }
+      </Navbar>
     </>
   );
 }

@@ -12,6 +12,9 @@ namespace e_shop.Models.DatabaseModels
         public int CartId { get; set; }
         public int ReservedId { get; set; }
         public DateTime OrderDate { get; set; }
+        public string OrderAdress { get; set; }
+        public string OrderPhoneNumber { get; set; }
+        public string OrderEmail { get; set; }
 
         public virtual Reserved Reserved { get; set; }
     }

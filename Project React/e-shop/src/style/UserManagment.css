@@ -12,6 +12,7 @@
     padding: 0 !important;
     margin-right: 0 !important;
     margin-left: 4% !important;
+    display: inline-block;
 }
 
 .CartProdImg{
@@ -23,3 +24,72 @@
 #bannedText{
     color: red;
 }
+.in_cart_tittle{
+    background-color: thistle;
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.in_cart_elements{
+    background-color: wheat;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: -10px;
+    height: 90vh;
+}
+.cart_icon{
+    margin: 5px;
+    margin-right: 4%;
+    border-radius: 50%;
+    padding: 6px;
+}
+#usersTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  #usersTable td, #usersTable th {
+    border: 1px solid #ddd;
+    padding: 3px;
+  }
+  
+  #usersTable tr:nth-child(even){background-color: wheat;}
+  #usersTable tr:nth-child(odd){background-color: #f5deb385;}
+  
+  #usersTable tr:hover {background-color: whitesmoke;}
+  
+  #usersTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: thistle;
+    color: white;
+  }
+#ordersTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  #ordersTable td, #ordersTable th {
+    border: 1px solid #ddd;
+    padding: 3px;
+  }
+  
+  #ordersTable tr:nth-child(even){background-color: #f1e7e7;}
+  #ordersTable tr:nth-child(odd){background-color: #cfcfce85;}
+  
+  #ordersTable tr:hover {background-color: whitesmoke;}
+  
+  #ordersTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: thistle;
+    color: white;
+  }
