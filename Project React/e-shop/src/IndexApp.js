@@ -12,6 +12,8 @@ import AddProd from './components/AddProd';
 import CartPreview from './components/CartPreview';
 import OrdersPreview from './components/OrdersPreview';
 import ReservedPreview from './components/ReservedPreview';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function IndexApp() {
 
@@ -29,9 +31,15 @@ function IndexApp() {
         </div>
       );
     }else if (!Static.checkForRoles()) {
+    
+      Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'You have been banned!',
+        }).then(()=>{
+          window.location.reload()
+        })
       sessionStorage.clear();
-      Static.setCookie('banAlert', '1', 1);
-      history.push('/');
     } else if(sessionStorage.getItem('name') != null){
       return (
         <div className='indexContainer'>

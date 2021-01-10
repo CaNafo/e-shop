@@ -1,5 +1,7 @@
 import Static from '../services/Static';
 import { Alert } from 'react-bootstrap';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const SignUpServices = {
     redirectToIndex: function (response, history) {
@@ -17,10 +19,18 @@ const SignUpServices = {
 
     checkIfRegistered: function (response, history) {
         if (parseInt(response) > 0) {
-            alert('Successfully registered!');
+            Swal.fire({
+                icon: 'success',
+                title: 'Well done!',
+                text: 'Successfully registered!',
+              })
             history.push('../');
         } else {
-            alert('Mail you entered is taken!');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Mail you entered is taken!',
+              })
             history.push('./SignUp');
         }
     },
@@ -60,13 +70,25 @@ const SignUpServices = {
                             response => SignUpServices.checkIfRegistered(response, history)
                         );
                 } else {
-                    alert('Password must contain minimum 8 characters, both letters and digits!')
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Password must contain minimum 8 characters, both letters and digits!',
+                      })
                 }
             } else {
-                alert('Please enter valid email!');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter valid email!',
+                  })
             }
         } else {
-            alert('Please fill all fields!');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill all fields!',
+              })
         }
     }
 }

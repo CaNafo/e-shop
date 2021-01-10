@@ -21,6 +21,9 @@ function ProductDetails(props) {
     const [photo, setPhoto] = useState('');
     const [categorys, setCategorys] = useState([]);
 
+    var [comments, setComments] = useState([]);
+
+
     function onCancel() {
         window.location.reload();
     }
@@ -225,6 +228,38 @@ function ProductDetails(props) {
         }
     }
 
+    function getComments(){
+        if(comments != undefined){
+            var elements = [];
+            for (var comment of comments) {
+                if(sessionStorage.getItem('guest') == 'null' && comment.userID == Statics.getUser().id){
+                    elements.push(
+                        <>                        
+                        <div className="comment_container darker">
+                            <img src={ProfileImg} alt="Avatar" className="right" style={{width:100+"%"}}/>
+                            <p className='comment_name_right'>{comment.user}</p>
+                            <p className="right">{comment.text}</p>
+                        </div>
+                        </>
+                    );
+                }else{
+                    elements.push(
+                        <>
+                        <div className="comment_container">
+                            <img src={ProfileImg} alt="Avatar" style={{width:100+"%"}}/>
+                            <p className='comment_name_left'>{comment.user}</p>
+                            <p className='left'>{comment.text}</p>
+                        </div>
+                        </>
+                    );
+                }
+            }
+            return (
+                elements
+            );
+        }
+    }
+
     function showProduct() {
         if (product !== undefined) {
             hideLoader();
@@ -306,8 +341,17 @@ function ProductDetails(props) {
         }
         fetchProduct();
         fetchCategorys();
+        fetchComments();
 
     }, [])
+
+    const fetchComments = async()=>{
+        var link = Statics.getServerLink() + 'api/GetCommentsOfProduct?productID=' + id;
+        const data = await fetch(link).then(response => response.json())
+            .then(
+                response => setComments(response)
+            );
+    }
 
     const fetchCategorys = async () => {
         var link = Statics.getServerLink() + 'api/GetCategorys';
@@ -346,6 +390,40 @@ function ProductDetails(props) {
         document.getElementById('btnComment').classList.add('btnComment');
     }
 
+    const addComment = async()=>{
+        let commentText = document.getElementById('styled').value + "";
+        let commentsBody = document.getElementById('commentsBody');
+        if(commentText.length > 0){
+            var link = Statics.getServerLink() + 'api/AddComment?userID='+(Statics.getUser().id)+"&productID="+product[0].productId+"&text="+commentText;
+            const data = await fetch(link);
+            commentsBody.innerHTML+='<div class="comment_container darker">'+
+            '<img src=\''+ProfileImg+'\'alt="Avatar" class="right" style={{width:100+"%"}}/>'+
+            '<p class=\'comment_name_right\'>'+Statics.getUser().firstName+' '+Statics.getUser().lastName+'</p>'+
+            '<p class="right">'+commentText+'</p>'+
+            '</div>';
+            
+            document.getElementById('styled').value = "";
+            Swal.fire('Comment is successfully added!', '', 'success');
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Comment field can\'t be ampty!',
+              })
+        }
+    }
+
+    function showCommentInputField(){
+        if(sessionStorage.getItem('guest') == 'null'){
+            return(                
+            <div>
+                <textarea name="styled-textarea" placeholder='Enter your comment here...' id="styled" onfocus="this.value=''; setbg('#e5fff3');" onblur="setbg('white')"></textarea>
+                <button className='btn btn-primary btn_post_comment' onClick={e => addComment()}>Post</button> 
+            </div>
+            );
+        }
+    }
+    
     return (
         <div>    
             <div className='tabDiv'>
@@ -359,38 +437,16 @@ function ProductDetails(props) {
                 <div className="loader" id='newsLoader'>Loading...</div>
             </div>
             <div className='container commentsContainer' id='divComments'>
+                <div className='comments_body' id='commentsBody'>
+                    
+                    {
+                        getComments()
+                    }
+                    
+                </div>          
                 {
-                    //getComments()
-                }
-            <div className='comments_body'>
-                <div className="comment_container">
-                <img src={ProfileImg} alt="Avatar" style={{width:100+"%"}}/>
-                <p className='comment_name_left'>Marko Markovic</p>
-                <p className='left'>Hello. How are you today?</p>
-                </div>
-
-                <div className="comment_container darker">
-                <img src={ProfileImg} alt="Avatar" className="right" style={{width:100+"%"}}/>
-                <p className='comment_name_right'>Marko Markovic</p>
-                <p className="right">Hey! I'm fine. Thanks for asking!</p>
-                </div>
-                
-                <div className="comment_container">
-                <img src={ProfileImg} alt="Avatar" style={{width:100+"%"}}/>
-                <p className='comment_name_left'>Marko Markovic</p>
-                <p className='left'>Hello. How are you today?</p>
-                </div>
-
-                <div className="comment_container darker">
-                <img src={ProfileImg} alt="Avatar" className="right" style={{width:100+"%"}}/>
-                <p className='comment_name_right'>Marko Markovic</p>
-                <p className="right">Hey! I'm fine. Thanks for asking!</p>
-                </div>
-            </div>
-            <div>
-                <textarea name="styled-textarea" placeholder='Enter your comment here...' id="styled" onfocus="this.value=''; setbg('#e5fff3');" onblur="setbg('white')"></textarea>
-                <button className='btn btn-primary btn_post_comment'>Post</button> 
-            </div>                
+                    showCommentInputField()
+                }      
             </div>
         </div>
     );
