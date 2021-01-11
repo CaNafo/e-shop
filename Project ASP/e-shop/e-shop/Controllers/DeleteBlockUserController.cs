@@ -29,6 +29,21 @@ namespace e_shop.Controllers
 
                 var itemToRemove = context.Users.SingleOrDefault(user => user.UserId == content.ID); //returns a single item.
 
+                var deleteOrdered = context.Orders.Where(user => user.UserId == content.ID);
+
+                if (deleteOrdered != null)
+                {
+                    context.Orders.RemoveRange(deleteOrdered);
+                    context.SaveChanges();
+                }
+                var deleteComments = context.Comment.Where(user => user.UserId == content.ID);
+
+                if (deleteComments != null)
+                {
+                    context.Comment.RemoveRange(deleteComments);
+                    context.SaveChanges();
+                }
+
                 var deleteReserved = context.Reserved.Where(user => user.UserId == content.ID);
 
                 if (deleteReserved != null)

@@ -25,12 +25,11 @@ const LoginServices = {
         if(localStorage.getItem('pass') != null && localStorage.getItem('pass')==pass){
             var link = Static.getServerLink()+'api/Validate?token='+pass+"&email="+eMail;
 
-            await fetch(link).then(response => response.json())
-                .then(
-                    response => 
-                    LoginServices.setToken(response) &
-                    LoginServices.redirectToIndex(response,history)
-                );
+            const data = await fetch(link);
+            const temp = await data.json();
+            
+            LoginServices.setToken(temp);
+            LoginServices.redirectToIndex(temp, history);
         }else{ 
             var link = Static.getServerLink()+'api/Login';
 

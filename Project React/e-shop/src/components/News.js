@@ -111,7 +111,7 @@ function News() {
             }
         } else {
             if (document.getElementById('newsTittle') !== null) {
-                document.getElementById('newsTittle').innerHTML = 'Now news to show!';
+                document.getElementById('newsTittle').innerHTML = 'No news to show!';
                 document.getElementById('btnNext').style.display = "none";
                 document.getElementById('btnPerv').style.display = "none";
                 document.getElementById('btnMore').style.display = "none";
