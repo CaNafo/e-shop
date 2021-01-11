@@ -1,4 +1,6 @@
 import Static from '../services/Static';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const LoginServices = {
     redirectToIndex: function (response, history) {
@@ -26,10 +28,21 @@ const LoginServices = {
             var link = Static.getServerLink()+'api/Validate?token='+pass+"&email="+eMail;
 
             const data = await fetch(link);
-            const temp = await data.json();
+            try{
+                const temp = await data.json();
+                LoginServices.setToken(temp);
+                LoginServices.redirectToIndex(temp, history);
+            }catch(e){
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops looks like token has expired...',
+                text: 'Please please enter your password again!',
+              }).then(()=>{                      
+                window.location.reload();
+              });
+              localStorage.removeItem('pass');
+            }
             
-            LoginServices.setToken(temp);
-            LoginServices.redirectToIndex(temp, history);
         }else{ 
             var link = Static.getServerLink()+'api/Login';
 
