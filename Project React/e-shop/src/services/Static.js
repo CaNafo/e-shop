@@ -2,7 +2,8 @@ const Static = {
     checkPermision: function (perm, block) {
         var user = JSON.parse(sessionStorage.getItem('user'));
 
-        if (user !== null) {
+        if (user !== null && user!=undefined) {
+           try{
             var roles = user[0].roles;
 
             for (var i = 0; i < roles.length; i++) {
@@ -13,6 +14,9 @@ const Static = {
                     }
                 }
             }
+           }catch(e){
+               
+           }
         }
     },dontHavePermision: function (perm, block) {
         var user = JSON.parse(sessionStorage.getItem('user'));

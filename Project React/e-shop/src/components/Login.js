@@ -30,7 +30,6 @@ function Login() {
     function onCheck(e) {
         if (e.checked) {
             localStorage.setItem("eMail", eMail);
-            localStorage.setItem("pass", pass);
         }
     }
 
