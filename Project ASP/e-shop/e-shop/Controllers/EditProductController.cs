@@ -20,7 +20,9 @@ namespace e_shop.Controllers
                 if (productDB != null && productDB.CategoryId != content.category)
                 {
                     var reserved = context.Reserved.Where(item => item.ProductId == content.productId);
+                    var ordered = context.Orders.Where(i => i.ProductId == content.productId);
                     context.Reserved.RemoveRange(reserved);
+                    context.Orders.RemoveRange(ordered);
                     context.Products.Remove(productDB);
                     context.SaveChanges();
 
